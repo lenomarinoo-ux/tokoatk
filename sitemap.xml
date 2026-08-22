@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://tokoatk.biz.id/</loc><priority>1.0</priority></url>
+  <url><loc>https://tokoatk.biz.id/tentang-kami.html</loc><priority>0.8</priority></url>
+  <url><loc>https://tokoatk.biz.id/produk.html</loc><priority>0.9</priority></url>
+  <url><loc>https://tokoatk.biz.id/paket.html</loc><priority>0.8</priority></url>
+  <url><loc>https://tokoatk.biz.id/kontak.html</loc><priority>0.7</priority></url>
+
+  <url><loc>https://tokoatk.biz.id/produk/alat-tulis-kantor.html</loc><priority>0.7</priority></url>
+  <url><loc>https://tokoatk.biz.id/produk/kursi-kantor.html</loc><priority>0.7</priority></url>
+  <url><loc>https://tokoatk.biz.id/produk/meja-kantor.html</loc><priority>0.7</priority></url>
+  <url><loc>https://tokoatk.biz.id/produk/lemari-arsip.html</loc><priority>0.7</priority></url>
+  <url><loc>https://tokoatk.biz.id/produk/perlengkapan-kantor.html</loc><priority>0.7</priority></url>
+  <url><loc>https://tokoatk.biz.id/produk/videotron.html</loc><priority>0.7</priority></url>
+  <url><loc>https://tokoatk.biz.id/produk/smart-board.html</loc><priority>0.7</priority></url>
+  <url><loc>https://tokoatk.biz.id/produk/furniture-kantor.html</loc><priority>0.7</priority></url>
+
+  <url><loc>https://tokoatk.biz.id/paket/paket-sekolah.html</loc><priority>0.6</priority></url>
+  <url><loc>https://tokoatk.biz.id/paket/paket-kampus.html</loc><priority>0.6</priority></url>
+  <url><loc>https://tokoatk.biz.id/paket/paket-perusahaan.html</loc><priority>0.6</priority></url>
+  <url><loc>https://tokoatk.biz.id/paket/paket-instansi.html</loc><priority>0.6</priority></url>
+
+  <url><loc>https://tokoatk.biz.id/blog.html</loc><priority>0.6</priority></url>
+  <url><loc>https://tokoatk.biz.id/lokasi/atk-malang.html</loc><priority>0.6</priority></url>
+</urlset>
