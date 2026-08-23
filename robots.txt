@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tokoatk.biz.id/sitemap.xml
+Sitemap: https://tokoatk.web.id/sitemap.xml
