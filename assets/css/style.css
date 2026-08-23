@@ -2457,12 +2457,27 @@ img {
    ========================================================================== */
 .footer-atk {
   background: #2a0a0a;
-  color: rgba(255, 255, 255, .88);
+  color: #ffffff;
   padding-top: 4rem;
 }
 
+.footer-atk p {
+  color: #ffffff !important;
+  opacity: .95;
+}
+
+.footer-atk .navbar-brand-atk,
+.footer-atk .navbar-brand-atk span {
+  color: #ffffff !important;
+}
+
+.footer-atk .navbar-brand-atk small {
+  color: #ffffff !important;
+  opacity: .92;
+}
+
 .footer-atk h5 {
-  color: var(--white);
+  color: #ffffff !important;
   font-size: .92rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -2471,12 +2486,14 @@ img {
 }
 
 .footer-atk a {
-  color: rgba(255, 255, 255, .84);
+  color: #ffffff !important;
+  opacity: .92;
   font-size: .9rem;
 }
 
 .footer-atk a:hover {
-  color: var(--white);
+  color: #ffffff !important;
+  opacity: 1;
 }
 
 .footer-atk ul {
@@ -2495,7 +2512,7 @@ img {
   gap: .6rem;
   font-weight: 800;
   font-size: 1.25rem;
-  color: var(--white);
+  color: #ffffff;
   margin-bottom: 1rem;
 }
 
@@ -2523,21 +2540,23 @@ img {
   min-width: 44px;
   min-height: 44px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, .28);
+  border: 1px solid rgba(255, 255, 255, .35);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: var(--transition);
+  color: #ffffff !important;
+  opacity: 1;
 }
 
 .footer-social a:hover {
   background: var(--white);
-  color: var(--primary);
+  color: var(--primary) !important;
   border-color: var(--white);
 }
 
 .footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, .12);
+  border-top: 1px solid rgba(255, 255, 255, .18);
   margin-top: 3rem;
   padding: 1.4rem 0;
   font-size: .82rem;
@@ -2546,11 +2565,17 @@ img {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: .6rem;
+  color: #ffffff !important;
+}
+
+.footer-bottom span {
+  color: #ffffff !important;
 }
 
 .footer-city-strip {
   font-size: .8rem;
-  color: rgba(255, 255, 255, .8);
+  color: #ffffff !important;
+  opacity: .92;
 }
 
 /* ==========================================================================
