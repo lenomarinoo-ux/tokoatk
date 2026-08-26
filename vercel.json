@@ -1,6 +1,17 @@
 {
     "cleanUrls": true,
     "trailingSlash": false,
+    "redirects": [
+        { "source": "/blog/tips-memilih-supplier-atk-kantor-22-agustus.html", "destination": "/blog/tips-memilih-supplier-atk-kantor.html", "permanent": true },
+        { "source": "/blog/cara-menghitung-kebutuhan-atk-bulanan-kantor-22-agustus.html", "destination": "/blog/cara-menghitung-kebutuhan-atk-bulanan-kantor.html", "permanent": true },
+        { "source": "/blog/grosir-atk-kantor-terdekat-22-agustus.html", "destination": "/blog/grosir-atk-kantor-terdekat.html", "permanent": true },
+        { "source": "/blog/rincian-harga-grosir-alat-tulis-kantor-per-kategori-22-agustus.html", "destination": "/blog/rincian-harga-grosir-alat-tulis-kantor-per-kategori.html", "permanent": true },
+        { "source": "/blog/manfaat-berlangganan-atk-kantor-pengiriman-rutin-22-agustus.html", "destination": "/blog/manfaat-berlangganan-atk-kantor-pengiriman-rutin.html", "permanent": true },
+        { "source": "/blog/spesifikasi-harga-videotron-indoor-p2-ruang-meeting-22-agustus.html", "destination": "/blog/spesifikasi-harga-videotron-indoor-p2-ruang-meeting.html", "permanent": true },
+        { "source": "/blog/pelaporan-pengadaan-atk-sekolah-melalui-siplah-24-agustus.html", "destination": "/blog/pelaporan-pengadaan-atk-sekolah-melalui-siplah.html", "permanent": true },
+        { "source": "/blog/cara-menyusun-rab-paket-atk-sekolah-dana-bos-24-agustus.html", "destination": "/blog/cara-menyusun-rab-paket-atk-sekolah-dana-bos.html", "permanent": true },
+        { "source": "/blog/panduan-penyusunan-paket-atk-sekolah-murah-grosir-dana-bos-24-agustus.html", "destination": "/blog/panduan-penyusunan-paket-atk-sekolah-murah-grosir-dana-bos.html", "permanent": true }
+    ],
     "headers": [
         {
             "source": "/assets/(.*)",
