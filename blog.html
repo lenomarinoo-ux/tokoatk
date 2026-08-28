@@ -37,14 +37,16 @@
     <style>
       *,::before,::after{box-sizing:border-box}
       :root{--primary:#550000;--primary-dark:#3a0000;--primary-tint:#f4e9e9;--secondary:#ff0000;--white:#fff;--ink:#221a19;--text-dark:#221a19;--text-muted:#4a3e3c;--bg-soft:#f7e2df;--line:#e6c9c4;--border-radius:12px;--border-radius-sm:8px;--border-radius-lg:20px}
-      body{font-family:'Poppins',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#221a19;background:linear-gradient(180deg,#fff7f6 0%,#fbe6e3 100%);font-weight:400;line-height:1.65;-webkit-font-smoothing:antialiased;margin:0;overflow-x:hidden}
+      html{width:100%;max-width:100%;overflow-x:hidden}
+      body{font-family:'Poppins',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#221a19;background:linear-gradient(180deg,#fff7f6 0%,#fbe6e3 100%);font-weight:400;line-height:1.65;-webkit-font-smoothing:antialiased;margin:0;width:100%;max-width:100%;position:relative;overflow-wrap:break-word}
+      main{width:100%;max-width:100%;position:relative}
       h1,h2,h3{font-family:'Poppins',system-ui,sans-serif;font-weight:700;color:#221a19;letter-spacing:-.01em;margin-top:0}
       h1{font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:800;line-height:1.2;letter-spacing:-.02em}
       p{color:#4a3e3c;line-height:1.65}
       a{text-decoration:none;color:inherit}
       img{max-width:100%;height:auto;display:block}
       .container-xl{max-width:1320px;margin-left:auto;margin-right:auto;padding-left:clamp(1.25rem,5vw,4.5rem);padding-right:clamp(1.25rem,5vw,4.5rem)}
-      .atk-header{position:sticky;top:0;z-index:1040;background:rgba(255,249,248,.96);backdrop-filter:blur(10px);border-bottom:1px solid #e6c9c4}
+      .atk-header{position:sticky;top:0;z-index:1040;width:100%;max-width:100%;left:0;right:0;background:rgba(255,249,248,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid #e6c9c4;transform:translateZ(0);-webkit-transform:translateZ(0);will-change:transform}
       .navbar-atk{padding:.9rem 0}
       .navbar-brand-atk{display:flex;align-items:center;gap:.6rem;font-family:'Poppins',sans-serif;font-weight:800;font-size:1.35rem;color:#221a19;line-height:1}
       .navbar-brand-atk .mark{width:42px;height:42px;display:flex;align-items:center;justify-content:center}
@@ -182,6 +184,54 @@
     <section class="section">
         <div class="container-xl">
             <div class="row g-4" data-stagger>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="product-card reveal">
+                        <div class="pc-img"><span class="pc-cat">28 Agustus 2026</span><img
+                                src="assets/img/blog/28_agustus/cara-menyusun-anggaran-merchandise-atk-ospek-kampus-efisien.webp"
+                                alt="Cara Menyusun Anggaran Merchandise ATK Ospek Kampus secara Efisien" loading="lazy"
+                                width="700" height="440"></div>
+                        <div class="pc-body">
+                            <h3><a href="blog/cara-menyusun-anggaran-merchandise-atk-ospek-kampus-efisien.html">Cara Menyusun Anggaran Merchandise ATK Ospek Kampus secara Efisien</a></h3>
+                            <p>Strategi menyusun anggaran merchandise ATK Ospek: pendataan kuota mahasiswa baru, komponen biaya pokok, buffer anggaran 10%, dan tips harga grosir.</p>
+                            <a href="blog/cara-menyusun-anggaran-merchandise-atk-ospek-kampus-efisien.html"
+                                class="fw-semibold text-primary-atk">Baca Selengkapnya <i
+                                    class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="product-card reveal">
+                        <div class="pc-img"><span class="pc-cat">28 Agustus 2026</span><img
+                                src="assets/img/blog/28_agustus/cara-custom-logo-kampus-merchandise-atk-kegiatan-ospek.webp"
+                                alt="Cara Custom Logo Kampus pada Merchandise ATK untuk Kegiatan Ospek" loading="lazy"
+                                width="700" height="440"></div>
+                        <div class="pc-body">
+                            <h3><a href="blog/cara-custom-logo-kampus-merchandise-atk-kegiatan-ospek.html">Cara Custom Logo Kampus pada Merchandise ATK untuk Kegiatan Ospek</a></h3>
+                            <p>Panduan custom logo kampus pada merchandise ATK &amp; seminar kit Ospek: tahapan desain, pilihan sablon vs bordir vs cetak digital, dan tips sampel.</p>
+                            <a href="blog/cara-custom-logo-kampus-merchandise-atk-kegiatan-ospek.html"
+                                class="fw-semibold text-primary-atk">Baca Selengkapnya <i
+                                    class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="product-card reveal">
+                        <div class="pc-img"><span class="pc-cat">28 Agustus 2026</span><img
+                                src="assets/img/blog/28_agustus/inspirasi-paket-atk-kampus-seminar-kit-aesthetic-ospek-mahasiswa-baru.webp"
+                                alt="Inspirasi Paket ATK Kampus dan Seminar Kit Aesthetic untuk Kegiatan Ospek Mahasiswa Baru" loading="lazy"
+                                width="700" height="440"></div>
+                        <div class="pc-body">
+                            <h3><a href="blog/inspirasi-paket-atk-kampus-seminar-kit-aesthetic-ospek-mahasiswa-baru.html">Inspirasi Paket ATK Kampus dan Seminar Kit Aesthetic untuk Kegiatan Ospek Mahasiswa Baru</a></h3>
+                            <p>Panduan paket ATK kampus dan seminar kit aesthetic untuk Ospek: isi perlengkapan mahasiswa baru, cara custom logo, estimasi harga grosir, dan tips pemesanan.</p>
+                            <a href="blog/inspirasi-paket-atk-kampus-seminar-kit-aesthetic-ospek-mahasiswa-baru.html"
+                                class="fw-semibold text-primary-atk">Baca Selengkapnya <i
+                                    class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="col-md-6 col-lg-4">
                     <div class="product-card reveal">
@@ -470,7 +520,7 @@
                                 class="bi bi-whatsapp"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-6">
+                <div class="col-lg-2 col-md-6 col-6">
                     <h5>Navigasi</h5>
                     <ul>
                         <li><a href="index.html">Beranda</a></li>
@@ -481,7 +531,7 @@
                         <li><a href="kontak.html">Kontak</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-2 col-md-6">
+                <div class="col-lg-2 col-md-6 col-6">
                     <h5>Produk</h5>
                     <ul>
                         <li><a href="produk/alat-tulis-kantor.html">Alat Tulis Kantor</a></li>
@@ -492,7 +542,7 @@
                         <li><a href="produk/videotron.html">Videotron</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-2 col-md-6">
+                <div class="col-lg-2 col-md-6 col-6">
                     <h5>Network</h5>
                     <ul>
                         <li><a href="https://mitrapro.biz.id">MitraPro</a></li>
@@ -503,7 +553,7 @@
                         <li><a href="https://tokoatk.web.id/toko-atk-makassar">Toko ATK Makassar</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-2 col-md-6">
+                <div class="col-lg-2 col-md-6 col-6">
                     <h5>Kontak</h5>
                     <ul>
                         <li><a href="https://wa.me/6288989643555"><i class="bi bi-whatsapp me-2"></i>0889-8964-3555</a>
