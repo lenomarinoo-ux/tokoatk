@@ -50,60 +50,399 @@
 
   <!-- Critical inline CSS (above-the-fold: navbar + hero + badges + base) -->
   <style>
-    *{box-sizing:border-box}
-    :root{--primary:#550000;--primary-dark:#3a0000;--primary-tint:#f4e9e9;--secondary:#ff0000;--white:#fff;--ink:#221a19;--text-dark:#221a19;--text-muted:#4a3e3c;--bg-soft:#f7e2df;--bg-soft-2:#f0cec8;--line:#e6c9c4;--gradient-primary:linear-gradient(135deg,#550000 0%,#ff0000 100%);--gradient-primary-soft:linear-gradient(135deg,rgba(85,0,0,.14) 0%,rgba(255,0,0,.14) 100%);--gradient-primary-wash:linear-gradient(135deg,rgba(85,0,0,.10) 0%,rgba(255,0,0,.10) 100%);--gradient-section-soft:linear-gradient(175deg,#fbe9e6 0%,#f3d2cc 100%);--gradient-hero:linear-gradient(175deg,#f8dedb 0%,#fdf5f4 55%,#fff 100%);--border-radius:12px;--border-radius-sm:8px;--border-radius-lg:20px;--transition:.35s cubic-bezier(.4,0,.2,1);--ease-bounce:cubic-bezier(.34,1.56,.64,1);--ease-smooth:cubic-bezier(.22,1,.36,1);--shadow-sm:0 2px 10px rgba(48,10,10,.06);--shadow-md:0 10px 30px rgba(48,10,10,.10);--shadow-lg:0 20px 50px rgba(48,10,10,.16);--shadow-glow:0 16px 34px rgba(255,0,0,.16),0 6px 14px rgba(85,0,0,.12);--container-pad:clamp(1rem,4vw,2rem)}
-    body{font-family:'Poppins',system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:#221a19;background:linear-gradient(180deg,#fff7f6 0%,#fbe6e3 100%);font-weight:400;line-height:1.65;-webkit-font-smoothing:antialiased;margin:0}
-    h1,h2,h3,h4,h5,h6{font-family:'Poppins',system-ui,-apple-system,sans-serif;font-weight:700;color:#221a19;letter-spacing:-.01em;margin-bottom:0}
-    h1{font-weight:800;letter-spacing:-.02em}
-    p{color:#4a3e3c}
-    a{text-decoration:none;color:inherit}
-    img{max-width:100%;height:auto;display:block}
-    .atk-header{position:sticky;top:0;z-index:1040;background:rgba(255,249,248,.96);backdrop-filter:blur(10px);border-bottom:1px solid #e6c9c4}
-    .navbar-atk{padding:.9rem 0}
-    .container-xl{max-width:1320px;padding-left:clamp(1.25rem,5vw,4.5rem)!important;padding-right:clamp(1.25rem,5vw,4.5rem)!important}
-    .navbar-brand-atk{display:flex;align-items:center;gap:.6rem;font-family:'Poppins',sans-serif;font-weight:800;font-size:1.35rem;color:#221a19;line-height:1}
-    .navbar-brand-atk .mark{width:42px;height:42px;min-width:42px;min-height:42px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:transparent!important;padding:0!important;margin:0}
-    .navbar-brand-atk .mark img,.navbar-brand-atk img{width:42px;height:42px;max-width:42px;max-height:42px;object-fit:contain;display:block}
-    .navbar-brand-atk small{display:block;margin-top:4px;font-size:.68rem;font-weight:600;line-height:1.2;color:#4a3e3c}
-    .hero-atk{position:relative;overflow:hidden;background-image:linear-gradient(90deg,rgba(255,255,255,.96) 0%,rgba(255,255,255,.90) 38%,rgba(255,255,255,.62) 68%,rgba(255,255,255,.38) 100%),url("assets/img/hero/bg-hero-lp.webp");background-size:cover;background-position:center;background-repeat:no-repeat;padding-top:clamp(2.75rem,6vw,5rem);padding-bottom:clamp(3rem,6vw,5rem)}
-    .hero-atk>.container-xl{position:relative;z-index:2}
-    .hero-title{font-size:clamp(2.1rem,4vw,3.15rem);line-height:1.12;margin-bottom:1.15rem;color:#221a19}
-    .hero-title .accent{color:#550000}
-    .hero-sub{font-size:1.08rem;max-width:540px;margin-bottom:2rem;color:#3e3331}
-    .hero-actions{display:flex;flex-wrap:wrap;gap:.9rem}
-    .btn{font-weight:600;border-radius:100px;padding:.85rem 1.7rem;font-size:.95rem;border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;white-space:nowrap}
-    .btn-primary-atk{background:#550000;color:#fff;border-color:#550000}
-    .btn-primary-atk:hover,.btn-primary-atk:focus-visible{background:#3a0000;color:#fff;border-color:#3a0000}
-    .btn-outline-atk{background:transparent;color:#550000;border-color:#550000}
-    .btn-outline-atk:hover,.btn-outline-atk:focus-visible{background:#550000;color:#fff}
-    .hero-badges{display:flex;flex-wrap:wrap;gap:.5rem 1.75rem;margin-top:1.9rem}
-    .hero-badge{display:flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:600;color:#221a19}
-    .hero-badge i{color:#550000;font-size:1rem}
-    .hero-visual .hero-img-wrap{border-radius:20px;overflow:hidden;box-shadow:0 20px 50px rgba(48,10,10,.16);aspect-ratio:4/3.1;position:relative;background:#f4e9e9}
-    .hero-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;visibility:hidden;transition:opacity .6s ease}
-    .hero-slide.is-active{opacity:1;visibility:visible}
-    .hero-slider__arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.9);border:none;box-shadow:0 4px 12px rgba(0,0,0,.15);display:flex;align-items:center;justify-content:center;z-index:4;cursor:pointer;color:#550000}
-    .hero-slider__arrow--prev{left:14px}
-    .hero-slider__arrow--next{right:14px}
-    .hero-stat-chip{position:absolute;bottom:-18px;left:-18px;top:auto;right:auto;background:#fff;border-radius:16px;padding:.85rem 1.25rem;box-shadow:0 12px 30px rgba(48,10,10,.14);border:1px solid #e6c9c4;z-index:5;width:auto;max-width:fit-content}
-    .hero-stat-chip .num{font-size:1.35rem;font-weight:800;color:#550000;line-height:1}
-    .hero-stat-chip .lbl{font-size:.78rem;font-weight:600;color:#4a3e3c;margin-top:4px}
-    @media(max-width:767.98px){.hero-atk{background-image:linear-gradient(180deg,#fff7f6 0%,#fbe6e3 100%)}.hero-actions{flex-direction:column;align-items:stretch}.hero-actions .btn{width:100%;white-space:normal;text-align:center}.hero-stat-chip{bottom:12px;left:12px;top:auto;right:auto}}
-    .reveal{opacity:0;transform:translateY(22px) scale(.98);transition:opacity .7s var(--ease-smooth),transform .7s var(--ease-smooth)}
-    .reveal.is-visible{opacity:1;transform:translateY(0) scale(1)}
+    * {
+      box-sizing: border-box
+    }
+
+    :root {
+      --primary: #550000;
+      --primary-dark: #3a0000;
+      --primary-tint: #f4e9e9;
+      --secondary: #ff0000;
+      --white: #fff;
+      --ink: #221a19;
+      --text-dark: #221a19;
+      --text-muted: #4a3e3c;
+      --bg-soft: #f7e2df;
+      --bg-soft-2: #f0cec8;
+      --line: #e6c9c4;
+      --gradient-primary: linear-gradient(135deg, #550000 0%, #ff0000 100%);
+      --gradient-primary-soft: linear-gradient(135deg, rgba(85, 0, 0, .14) 0%, rgba(255, 0, 0, .14) 100%);
+      --gradient-primary-wash: linear-gradient(135deg, rgba(85, 0, 0, .10) 0%, rgba(255, 0, 0, .10) 100%);
+      --gradient-section-soft: linear-gradient(175deg, #fbe9e6 0%, #f3d2cc 100%);
+      --gradient-hero: linear-gradient(175deg, #f8dedb 0%, #fdf5f4 55%, #fff 100%);
+      --border-radius: 12px;
+      --border-radius-sm: 8px;
+      --border-radius-lg: 20px;
+      --transition: .35s cubic-bezier(.4, 0, .2, 1);
+      --ease-bounce: cubic-bezier(.34, 1.56, .64, 1);
+      --ease-smooth: cubic-bezier(.22, 1, .36, 1);
+      --shadow-sm: 0 2px 10px rgba(48, 10, 10, .06);
+      --shadow-md: 0 10px 30px rgba(48, 10, 10, .10);
+      --shadow-lg: 0 20px 50px rgba(48, 10, 10, .16);
+      --shadow-glow: 0 16px 34px rgba(255, 0, 0, .16), 0 6px 14px rgba(85, 0, 0, .12);
+      --container-pad: clamp(1rem, 4vw, 2rem)
+    }
+
+    html {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden
+    }
+
+    body {
+      font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #221a19;
+      background: linear-gradient(180deg, #fff7f6 0%, #fbe6e3 100%);
+      font-weight: 400;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      margin: 0;
+      width: 100%;
+      max-width: 100%;
+      position: relative;
+      overflow-wrap: break-word
+    }
+
+    main {
+      width: 100%;
+      max-width: 100%;
+      position: relative
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+      font-weight: 700;
+      color: #221a19;
+      letter-spacing: -.01em;
+      margin-bottom: 0
+    }
+
+    h1 {
+      font-weight: 800;
+      letter-spacing: -.02em
+    }
+
+    p {
+      color: #4a3e3c
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block
+    }
+
+    .atk-header {
+      position: sticky;
+      top: 0;
+      z-index: 1040;
+      background: rgba(255, 249, 248, .96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e6c9c4
+    }
+
+    .navbar-atk {
+      padding: .9rem 0
+    }
+
+    .container-xl {
+      max-width: 1320px;
+      padding-left: clamp(1.25rem, 5vw, 4.5rem) !important;
+      padding-right: clamp(1.25rem, 5vw, 4.5rem) !important
+    }
+
+    .navbar-brand-atk {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 1.35rem;
+      color: #221a19;
+      line-height: 1
+    }
+
+    .navbar-brand-atk .mark {
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: transparent !important;
+      padding: 0 !important;
+      margin: 0
+    }
+
+    .navbar-brand-atk .mark img,
+    .navbar-brand-atk img {
+      width: 42px;
+      height: 42px;
+      max-width: 42px;
+      max-height: 42px;
+      object-fit: contain;
+      display: block
+    }
+
+    .navbar-brand-atk small {
+      display: block;
+      margin-top: 4px;
+      font-size: .68rem;
+      font-weight: 600;
+      line-height: 1.2;
+      color: #4a3e3c
+    }
+
+    .hero-atk {
+      position: relative;
+      overflow: hidden;
+      background-image: linear-gradient(90deg, rgba(255, 255, 255, .96) 0%, rgba(255, 255, 255, .90) 38%, rgba(255, 255, 255, .62) 68%, rgba(255, 255, 255, .38) 100%), url("assets/img/hero/bg-hero-lp.webp");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding-top: clamp(2.75rem, 6vw, 5rem);
+      padding-bottom: clamp(3rem, 6vw, 5rem)
+    }
+
+    .hero-atk>.container-xl {
+      position: relative;
+      z-index: 2
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 4vw, 3.15rem);
+      line-height: 1.12;
+      margin-bottom: 1.15rem;
+      color: #221a19
+    }
+
+    .hero-title .accent {
+      color: #550000
+    }
+
+    .hero-sub {
+      font-size: 1.08rem;
+      max-width: 540px;
+      margin-bottom: 2rem;
+      color: #3e3331
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .9rem
+    }
+
+    .btn {
+      font-weight: 600;
+      border-radius: 100px;
+      padding: .85rem 1.7rem;
+      font-size: .95rem;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      white-space: nowrap
+    }
+
+    .btn-primary-atk {
+      background: #550000;
+      color: #fff;
+      border-color: #550000
+    }
+
+    .btn-primary-atk:hover,
+    .btn-primary-atk:focus-visible {
+      background: #3a0000;
+      color: #fff;
+      border-color: #3a0000
+    }
+
+    .btn-outline-atk {
+      background: transparent;
+      color: #550000;
+      border-color: #550000
+    }
+
+    .btn-outline-atk:hover,
+    .btn-outline-atk:focus-visible {
+      background: #550000;
+      color: #fff
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem 1.75rem;
+      margin-top: 1.9rem
+    }
+
+    .hero-badge {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .85rem;
+      font-weight: 600;
+      color: #221a19
+    }
+
+    .hero-badge i {
+      color: #550000;
+      font-size: 1rem
+    }
+
+    .hero-visual .hero-img-wrap {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(48, 10, 10, .16);
+      aspect-ratio: 4/3.1;
+      position: relative;
+      background: #f4e9e9
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .6s ease
+    }
+
+    .hero-slide.is-active {
+      opacity: 1;
+      visibility: visible
+    }
+
+    .hero-slider__arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .9);
+      border: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 4;
+      cursor: pointer;
+      color: #550000
+    }
+
+    .hero-slider__arrow--prev {
+      left: 14px
+    }
+
+    .hero-slider__arrow--next {
+      right: 14px
+    }
+
+    .hero-stat-chip {
+      position: absolute;
+      bottom: -18px;
+      left: -18px;
+      top: auto;
+      right: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: .85rem 1.25rem;
+      box-shadow: 0 12px 30px rgba(48, 10, 10, .14);
+      border: 1px solid #e6c9c4;
+      z-index: 5;
+      width: auto;
+      max-width: fit-content
+    }
+
+    .hero-stat-chip .num {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #550000;
+      line-height: 1
+    }
+
+    .hero-stat-chip .lbl {
+      font-size: .78rem;
+      font-weight: 600;
+      color: #4a3e3c;
+      margin-top: 4px
+    }
+
+    @media(max-width:767.98px) {
+      .hero-atk {
+        background-image: linear-gradient(180deg, #fff7f6 0%, #fbe6e3 100%)
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+        white-space: normal;
+        text-align: center
+      }
+
+      .hero-stat-chip {
+        bottom: 12px;
+        left: 12px;
+        top: auto;
+        right: auto;
+        max-width: calc(100% - 24px)
+      }
+
+      .row.g-5 {
+        --bs-gutter-x: 1.5rem;
+        --bs-gutter-y: 2rem
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px) scale(.98);
+      transition: opacity .7s var(--ease-smooth), transform .7s var(--ease-smooth)
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1)
+    }
   </style>
 
   <!-- Bootstrap 5 CSS (Non-blocking) -->
-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"></noscript>
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  </noscript>
 
   <!-- Custom Stylesheet (Non-blocking) -->
   <link rel="preload" href="assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="assets/css/style.css"></noscript>
+  <noscript>
+    <link rel="stylesheet" href="assets/css/style.css">
+  </noscript>
 
   <!-- Google Fonts: Poppins (Non-blocking) -->
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
     media="print" onload="this.media='all'">
   <noscript>
     <link rel="stylesheet"
@@ -111,8 +450,7 @@
   </noscript>
 
   <!-- Bootstrap Icons (Non-blocking) -->
-  <link rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
     media="print" onload="this.media='all'">
   <noscript>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
@@ -317,8 +655,7 @@
         <div class="navbar-cta ms-lg-4">
           <a href="https://wa.me/6288989643555"
             data-wa-msg="Halo TokoATK, saya ingin berkonsultasi mengenai kebutuhan pengadaan ATK."
-            class="btn btn-primary-atk btn-sm-atk"
-            aria-label="Konsultasi Pengadaan via WhatsApp">
+            class="btn btn-primary-atk btn-sm-atk" aria-label="Konsultasi Pengadaan via WhatsApp">
             <i class="bi bi-whatsapp" aria-hidden="true"></i>
             <span class="visually-hidden">Konsultasi WhatsApp</span>
           </a>
@@ -329,859 +666,876 @@
 
   <main id="main-content">
 
-  <!-- ============================== HERO ============================== -->
-  <section class="hero-atk" aria-labelledby="hero-title">
-    <div class="container-xl">
-      <div class="row align-items-center g-5">
-        <div class="col-lg-6">
-          <h1 id="hero-title" class="hero-title">Supplier ATK &amp; Peralatan Kantor untuk <span class="accent">Instansi dan
-              Perusahaan</span></h1>
-          <p class="hero-sub">Penuhi kebutuhan alat tulis, furniture kantor, perlengkapan kerja, hingga solusi display
-            secara praktis untuk pengadaan sekolah, kampus, perusahaan, dan instansi.</p>
-          <div class="hero-actions">
-            <a href="https://wa.me/6288989643555"
-              data-wa-msg="Halo TokoATK, saya ingin berkonsultasi mengenai kebutuhan pengadaan ATK."
-              class="btn btn-primary-atk">
-              <i class="bi bi-whatsapp"></i> Konsultasi Pengadaan via WhatsApp
-            </a>
-            <a href="produk.html" class="btn btn-outline-atk">Lihat Produk</a>
-          </div>
-          <div class="hero-badges">
-            <span class="hero-badge"><i class="bi bi-patch-check-fill"></i> Melayani Pengadaan B2B</span>
-            <span class="hero-badge"><i class="bi bi-truck"></i> Pengiriman ke Berbagai Kota</span>
-            <span class="hero-badge"><i class="bi bi-diagram-3-fill"></i> Solusi Pengadaan Terintegrasi</span>
-            <span class="hero-badge"><i class="bi bi-chat-dots-fill"></i> Konsultasi Kebutuhan</span>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="hero-visual">
-            <div class="hero-frame-star">
-              <div class="hero-img-wrap hero-slider" aria-label="Galeri foto TokoATK">
-                <img
-                  src="assets/img/hero/hero-kantor1.webp"
-                  alt="Ruang kerja instansi tertata rapi dengan meja dan kursi kantor dari TokoATK"
-                  class="hero-slide is-active" loading="eager" fetchpriority="high"
-                  width="800" height="620">
-                <img src="assets/img/hero/hero-kantor2.webp"
-                  alt="Peralatan dan perlengkapan kantor TokoATK untuk kebutuhan pengadaan" class="hero-slide"
-                  loading="lazy" decoding="async" width="800" height="620">
-                <img src="assets/img/hero/hero-kantor3.webp"
-                  alt="Furniture dan fasilitas kantor untuk kebutuhan instansi dan perusahaan" class="hero-slide"
-                  loading="lazy" decoding="async" width="800" height="620">
-                <!-- Tombol navigasi slider -->
-                <button type="button"
-                  class="hero-slider__arrow hero-slider__arrow--prev" aria-label="Foto sebelumnya">
-                  <i class="bi bi-chevron-left"></i>
-                </button>
-                <button type="button"
-                  class="hero-slider__arrow hero-slider__arrow--next" aria-label="Foto berikutnya">
-                  <i class="bi bi-chevron-right"></i>
-                </button>
-              </div>
+    <!-- ============================== HERO ============================== -->
+    <section class="hero-atk" aria-labelledby="hero-title">
+      <div class="container-xl">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6">
+            <h1 id="hero-title" class="hero-title">Supplier ATK &amp; Peralatan Kantor untuk <span
+                class="accent">Instansi dan
+                Perusahaan</span></h1>
+            <p class="hero-sub">Penuhi kebutuhan alat tulis, furniture kantor, perlengkapan kerja, hingga solusi display
+              secara praktis untuk pengadaan sekolah, kampus, perusahaan, dan instansi.</p>
+            <div class="hero-actions">
+              <a href="https://wa.me/6288989643555"
+                data-wa-msg="Halo TokoATK, saya ingin berkonsultasi mengenai kebutuhan pengadaan ATK."
+                class="btn btn-primary-atk">
+                <i class="bi bi-whatsapp"></i> Konsultasi Pengadaan via WhatsApp
+              </a>
+              <a href="produk.html" class="btn btn-outline-atk">Lihat Produk</a>
             </div>
-            <div class="hero-stat-chip">
-              <div class="num">5 Kota</div>
-              <div class="lbl">Area layanan pengadaan</div>
+            <div class="hero-badges">
+              <span class="hero-badge"><i class="bi bi-patch-check-fill"></i> Melayani Pengadaan B2B</span>
+              <span class="hero-badge"><i class="bi bi-truck"></i> Pengiriman ke Berbagai Kota</span>
+              <span class="hero-badge"><i class="bi bi-diagram-3-fill"></i> Solusi Pengadaan Terintegrasi</span>
+              <span class="hero-badge"><i class="bi bi-chat-dots-fill"></i> Konsultasi Kebutuhan</span>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="hero-visual">
+              <div class="hero-frame-star">
+                <div class="hero-img-wrap hero-slider" aria-label="Galeri foto TokoATK">
+                  <img src="assets/img/hero/hero-kantor1.webp"
+                    alt="Ruang kerja instansi tertata rapi dengan meja dan kursi kantor dari TokoATK"
+                    class="hero-slide is-active" loading="eager" fetchpriority="high" width="800" height="620">
+                  <img src="assets/img/hero/hero-kantor2.webp"
+                    alt="Peralatan dan perlengkapan kantor TokoATK untuk kebutuhan pengadaan" class="hero-slide"
+                    loading="lazy" decoding="async" width="800" height="620">
+                  <img src="assets/img/hero/hero-kantor3.webp"
+                    alt="Furniture dan fasilitas kantor untuk kebutuhan instansi dan perusahaan" class="hero-slide"
+                    loading="lazy" decoding="async" width="800" height="620">
+                  <!-- Tombol navigasi slider -->
+                  <button type="button" class="hero-slider__arrow hero-slider__arrow--prev"
+                    aria-label="Foto sebelumnya">
+                    <i class="bi bi-chevron-left"></i>
+                  </button>
+                  <button type="button" class="hero-slider__arrow hero-slider__arrow--next"
+                    aria-label="Foto berikutnya">
+                    <i class="bi bi-chevron-right"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="hero-stat-chip">
+                <div class="num">5 Kota</div>
+                <div class="lbl">Area layanan pengadaan</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============================== ABOUT SINGKAT ============================== -->
-  <section class="section section-about" aria-labelledby="about-title">
-    <div class="container-xl">
+    <!-- ============================== ABOUT SINGKAT ============================== -->
+    <section class="section section-about" aria-labelledby="about-title">
+      <div class="container-xl">
 
-      <div class="row align-items-center g-5">
+        <div class="row align-items-center g-5">
 
-        <div class="col-lg-5">
+          <div class="col-lg-5">
 
-          <span class="eyebrow">
-            <i class="bi bi-building-check"></i>&nbsp;Tentang TokoATK
-          </span>
+            <span class="eyebrow">
+              <i class="bi bi-building-check"></i>&nbsp;Tentang TokoATK
+            </span>
 
-          <h2 id="about-title" class="section-title">
-            Solusi Pengadaan ATK dan Peralatan Kantor
-          </h2>
+            <h2 id="about-title" class="section-title">
+              Solusi Pengadaan ATK dan Peralatan Kantor
+            </h2>
 
-          <p class="section-sub">
-            TokoATK membantu kebutuhan pengadaan alat tulis kantor, kursi dan meja
-            kantor, lemari arsip, furniture, hingga solusi display seperti smart
-            board dan videotron — dirancang khusus untuk kebutuhan B2B instansi,
-            sekolah, kampus, dan perusahaan.
-          </p>
+            <p class="section-sub">
+              TokoATK membantu kebutuhan pengadaan alat tulis kantor, kursi dan meja
+              kantor, lemari arsip, furniture, hingga solusi display seperti smart
+              board dan videotron — dirancang khusus untuk kebutuhan B2B instansi,
+              sekolah, kampus, dan perusahaan.
+            </p>
 
-          <a href="tentang-kami.html" class="btn btn-outline-atk mt-2">
-            Tentang TokoATK
-          </a>
+            <a href="tentang-kami.html" class="btn btn-outline-atk mt-2">
+              Tentang TokoATK
+            </a>
+
+          </div>
+
+          <div class="col-lg-7">
+
+            <!-- Depth Carousel: ATK, Kursi Kantor, Lemari Arsip, Meja Kantor,
+               Perlengkapan Kantor, Videotron, Smart Board, Furniture Kantor -->
+            <div class="about-carousel reveal" id="aboutCarousel" data-autoplay="1500">
+
+              <div class="about-carousel__stage" id="aboutCarouselStage">
+
+                <a href="produk/alat-tulis-kantor.html" class="about-feature-card" data-slide>
+                  <div class="about-feature-icon">
+                    <i class="bi bi-pencil-fill"></i>
+                  </div>
+                  <p class="about-feature-name">ATK</p>
+                </a>
+
+                <a href="produk/kursi-kantor.html" class="about-feature-card" data-slide>
+                  <div class="about-feature-icon">
+                    <i class="bi bi-person-workspace"></i>
+                  </div>
+                  <p class="about-feature-name">Kursi Kantor</p>
+                </a>
+
+                <a href="produk/lemari-arsip.html" class="about-feature-card" data-slide>
+                  <div class="about-feature-icon">
+                    <i class="bi bi-archive-fill"></i>
+                  </div>
+                  <p class="about-feature-name">Lemari Arsip</p>
+                </a>
+
+                <a href="produk/meja-kantor.html" class="about-feature-card" data-slide>
+                  <div class="about-feature-icon">
+                    <i class="bi bi-table"></i>
+                  </div>
+                  <p class="about-feature-name">Meja Kantor</p>
+                </a>
+
+                <a href="produk/perlengkapan-kantor.html" class="about-feature-card" data-slide>
+                  <div class="about-feature-icon">
+                    <i class="bi bi-inboxes-fill"></i>
+                  </div>
+                  <p class="about-feature-name">Perlengkapan Kantor</p>
+                </a>
+
+                <a href="produk/videotron.html" class="about-feature-card" data-slide>
+                  <div class="about-feature-icon">
+                    <i class="bi bi-easel2-fill"></i>
+                  </div>
+                  <p class="about-feature-name">Videotron</p>
+                </a>
+
+                <a href="produk/smart-board.html" class="about-feature-card" data-slide>
+                  <div class="about-feature-icon">
+                    <i class="bi bi-display-fill"></i>
+                  </div>
+                  <p class="about-feature-name">Smart Board</p>
+                </a>
+
+                <a href="produk/furniture-kantor.html" class="about-feature-card" data-slide>
+                  <div class="about-feature-icon">
+                    <i class="bi bi-buildings-fill"></i>
+                  </div>
+                  <p class="about-feature-name">Furniture Kantor</p>
+                </a>
+
+              </div>
+
+              <div class="about-carousel__dots" id="aboutCarouselDots"></div>
+
+            </div>
+
+          </div>
 
         </div>
 
-        <div class="col-lg-7">
+      </div>
+    </section>
 
-          <!-- Depth Carousel: ATK, Kursi Kantor, Lemari Arsip, Meja Kantor,
-               Perlengkapan Kantor, Videotron, Smart Board, Furniture Kantor -->
-          <div class="about-carousel reveal" id="aboutCarousel" data-autoplay="1500">
+    <!-- ============================== VALUE PROPOSITIONS ============================== -->
+    <section class="section section-soft" aria-labelledby="vp-title">
+      <div class="container-xl">
+        <div class="section-head center mx-auto">
+          <span class="eyebrow"><i class="bi bi-stars"></i>&nbsp;Kenapa TokoATK</span>
+          <h2 id="vp-title" class="section-title">Dirancang untuk Kebutuhan Pengadaan B2B</h2>
+          <p class="section-sub mx-auto">Bukan sekadar toko ATK — TokoATK adalah mitra pengadaan yang memahami alur
+            kerja
+            instansi, sekolah, kampus, dan perusahaan.</p>
+        </div>
+        <div class="vp-marquee reveal" data-speed="34">
+          <div class="vp-marquee__track" id="vpMarqueeTrack">
 
-            <div class="about-carousel__stage" id="aboutCarouselStage">
+            <div class="vp-marquee__group">
+              <div class="vp-card">
+                <span class="vp-num">01</span>
+                <i class="bi bi-briefcase-fill vp-icon"></i>
+                <h3>Pengadaan B2B</h3>
+                <p>Melayani kebutuhan pengadaan untuk perusahaan, sekolah, kampus, dan institusi pemerintah.</p>
+              </div>
+              <div class="vp-card">
+                <span class="vp-num">02</span>
+                <i class="bi bi-grid-3x3-gap-fill vp-icon"></i>
+                <h3>Produk Beragam</h3>
+                <p>Mulai dari ATK harian hingga furniture kantor dan perangkat display seperti smart board.</p>
+              </div>
+              <div class="vp-card">
+                <span class="vp-num">03</span>
+                <i class="bi bi-chat-square-text-fill vp-icon"></i>
+                <h3>Konsultasi Kebutuhan</h3>
+                <p>Tim TokoATK membantu memilih produk yang sesuai dengan kebutuhan dan anggaran Anda.</p>
+              </div>
+              <div class="vp-card">
+                <span class="vp-num">04</span>
+                <i class="bi bi-diagram-3-fill vp-icon"></i>
+                <h3>Pengadaan Terintegrasi</h3>
+                <p>Berbagai kebutuhan ATK dan peralatan kantor dapat dikonsultasikan dalam satu tempat.</p>
+              </div>
+              <div class="vp-card">
+                <span class="vp-num">05</span>
+                <i class="bi bi-geo-alt-fill vp-icon"></i>
+                <h3>Melayani Berbagai Kota</h3>
+                <p>Fokus layanan di Malang, Surabaya, Jakarta, Denpasar, dan Makassar.</p>
+              </div>
+              <div class="vp-card">
+                <span class="vp-num">06</span>
+                <i class="bi bi-lightning-charge-fill vp-icon"></i>
+                <h3>Respon Cepat</h3>
+                <p>Konsultasi dan permintaan penawaran dapat dilakukan langsung melalui WhatsApp.</p>
+              </div>
+            </div>
 
-              <a href="produk/alat-tulis-kantor.html" class="about-feature-card" data-slide>
-                <div class="about-feature-icon">
-                  <i class="bi bi-pencil-fill"></i>
+            <div class="vp-marquee__group" aria-hidden="true">
+              <div class="vp-card">
+                <span class="vp-num">01</span>
+                <i class="bi bi-briefcase-fill vp-icon"></i>
+                <h3>Pengadaan B2B</h3>
+                <p>Melayani kebutuhan pengadaan untuk perusahaan, sekolah, kampus, dan institusi pemerintah.</p>
+              </div>
+              <div class="vp-card">
+                <span class="vp-num">02</span>
+                <i class="bi bi-grid-3x3-gap-fill vp-icon"></i>
+                <h3>Produk Beragam</h3>
+                <p>Mulai dari ATK harian hingga furniture kantor dan perangkat display seperti smart board.</p>
+              </div>
+              <div class="vp-card">
+                <span class="vp-num">03</span>
+                <i class="bi bi-chat-square-text-fill vp-icon"></i>
+                <h3>Konsultasi Kebutuhan</h3>
+                <p>Tim TokoATK membantu memilih produk yang sesuai dengan kebutuhan dan anggaran Anda.</p>
+              </div>
+              <div class="vp-card">
+                <span class="vp-num">04</span>
+                <i class="bi bi-diagram-3-fill vp-icon"></i>
+                <h3>Pengadaan Terintegrasi</h3>
+                <p>Berbagai kebutuhan ATK dan peralatan kantor dapat dikonsultasikan dalam satu tempat.</p>
+              </div>
+              <div class="vp-card">
+                <span class="vp-num">05</span>
+                <i class="bi bi-geo-alt-fill vp-icon"></i>
+                <h3>Melayani Berbagai Kota</h3>
+                <p>Fokus layanan di Malang, Surabaya, Jakarta, Denpasar, dan Makassar.</p>
+              </div>
+              <div class="vp-card">
+                <span class="vp-num">06</span>
+                <i class="bi bi-lightning-charge-fill vp-icon"></i>
+                <h3>Respon Cepat</h3>
+                <p>Konsultasi dan permintaan penawaran dapat dilakukan langsung melalui WhatsApp.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== KATEGORI PRODUK ============================== -->
+    <section class="section section-wash" aria-labelledby="cat-title">
+      <div class="container-xl">
+        <div
+          class="d-flex justify-content-between align-items-end flex-wrap gap-3 section-head section-head--wide mb-4">
+          <div>
+            <span class="eyebrow"><i class="bi bi-boxes"></i> Katalog Produk</span>
+            <h2 id="cat-title" class="section-title mb-0">Kategori Produk TokoATK</h2>
+          </div>
+          <a href="produk.html" class="fw-semibold text-primary-atk">Lihat Semua Produk <i
+              class="bi bi-arrow-right"></i></a>
+        </div>
+        <div class="cat-scroller" data-stagger>
+
+          <!-- ALAT TULIS KANTOR -->
+          <div class="cat-card reveal">
+            <div class="cat-image">
+              <img src="assets/img/hero/hero-kantor1.webp" alt="Alat Tulis Kantor TokoATK" loading="lazy"
+                decoding="async" width="600" height="400">
+              <div class="cat-icon"><i class="bi bi-pencil-fill"></i></div>
+            </div>
+            <div class="cat-content">
+              <h3 class="cat-name"><a href="produk/alat-tulis-kantor.html">Alat Tulis Kantor</a></h3>
+              <p class="cat-desc">Kebutuhan ATK harian untuk kantor, sekolah, dan kampus.</p>
+              <a href="produk/alat-tulis-kantor.html" class="cat-link">Lihat Produk <i
+                  class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <!-- KURSI KANTOR -->
+          <div class="cat-card reveal">
+            <div class="cat-image">
+              <img src="assets/img/hero/hero-kantor2.webp" alt="Kursi Kantor TokoATK" loading="lazy" decoding="async"
+                width="600" height="400">
+              <div class="cat-icon"><i class="bi bi-person-workspace"></i></div>
+            </div>
+            <div class="cat-content">
+              <h3 class="cat-name"><a href="produk/kursi-kantor.html">Kursi Kantor</a></h3>
+              <p class="cat-desc">Kursi kerja, kursi direktur, hingga kursi kantor ergonomis.</p>
+              <a href="produk/kursi-kantor.html" class="cat-link">Lihat Produk <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <!-- MEJA KANTOR -->
+          <div class="cat-card reveal">
+            <div class="cat-image">
+              <img src="assets/img/hero/hero-kantor3.webp" alt="Meja Kantor TokoATK" loading="lazy" decoding="async"
+                width="600" height="400">
+              <div class="cat-icon"><i class="bi bi-border-all"></i></div>
+            </div>
+            <div class="cat-content">
+              <h3 class="cat-name"><a href="produk/meja-kantor.html">Meja Kantor</a></h3>
+              <p class="cat-desc">Meja kerja dan meja kantor untuk berbagai kebutuhan ruang.</p>
+              <a href="produk/meja-kantor.html" class="cat-link">Lihat Produk <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <!-- LEMARI ARSIP -->
+          <div class="cat-card reveal">
+            <div class="cat-image">
+              <img src="assets/img/hero/hero-kantor1.webp" alt="Lemari Arsip TokoATK" loading="lazy" decoding="async"
+                width="600" height="400">
+              <div class="cat-icon"><i class="bi bi-archive-fill"></i></div>
+            </div>
+            <div class="cat-content">
+              <h3 class="cat-name"><a href="produk/lemari-arsip.html">Lemari Arsip</a></h3>
+              <p class="cat-desc">Penyimpanan dokumen dan arsip kantor yang rapi dan tahan lama.</p>
+              <a href="produk/lemari-arsip.html" class="cat-link">Lihat Produk <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <!-- PERLENGKAPAN KANTOR -->
+          <div class="cat-card reveal">
+            <div class="cat-image">
+              <img src="assets/img/hero/hero-kantor2.webp" alt="Perlengkapan Kantor TokoATK" loading="lazy"
+                decoding="async" width="600" height="400">
+              <div class="cat-icon"><i class="bi bi-box-seam-fill"></i></div>
+            </div>
+            <div class="cat-content">
+              <h3 class="cat-name"><a href="produk/perlengkapan-kantor.html">Perlengkapan Kantor</a></h3>
+              <p class="cat-desc">Perlengkapan pendukung operasional kantor sehari-hari.</p>
+              <a href="produk/perlengkapan-kantor.html" class="cat-link">Lihat Produk <i
+                  class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <!-- VIDEOTRON -->
+          <div class="cat-card reveal">
+            <div class="cat-image">
+              <img src="assets/img/hero/hero-kantor3.webp" alt="Videotron TokoATK" loading="lazy" decoding="async"
+                width="600" height="400">
+              <div class="cat-icon"><i class="bi bi-display-fill"></i></div>
+            </div>
+            <div class="cat-content">
+              <h3 class="cat-name"><a href="produk/videotron.html">Videotron</a></h3>
+              <p class="cat-desc">Videotron LED indoor dan outdoor untuk kebutuhan display.</p>
+              <a href="produk/videotron.html" class="cat-link">Lihat Produk <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <!-- SMART BOARD -->
+          <div class="cat-card reveal">
+            <div class="cat-image">
+              <img src="assets/img/hero/hero-kantor1.webp" alt="Smart Board TokoATK" loading="lazy" decoding="async"
+                width="600" height="400">
+              <div class="cat-icon"><i class="bi bi-easel2-fill"></i></div>
+            </div>
+            <div class="cat-content">
+              <h3 class="cat-name"><a href="produk/smart-board.html">Smart Board</a></h3>
+              <p class="cat-desc">Interactive flat panel untuk ruang kelas dan ruang rapat.</p>
+              <a href="produk/smart-board.html" class="cat-link">Lihat Produk <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <!-- FURNITURE KANTOR -->
+          <div class="cat-card reveal">
+            <div class="cat-image">
+              <img src="assets/img/hero/hero-kantor2.webp" alt="Furniture Kantor TokoATK" loading="lazy"
+                decoding="async" width="600" height="400">
+              <div class="cat-icon"><i class="bi bi-building-fill"></i></div>
+            </div>
+            <div class="cat-content">
+              <h3 class="cat-name"><a href="produk/furniture-kantor.html">Furniture Kantor</a></h3>
+              <p class="cat-desc">Furniture pendukung untuk melengkapi ruang kerja instansi.</p>
+              <a href="produk/furniture-kantor.html" class="cat-link">Lihat Produk <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== PAKET PENGADAAN ============================== -->
+    <section class="section section-soft pkg-teaser" aria-labelledby="pkg-title">
+      <div class="container-xl">
+        <div class="section-head center mx-auto">
+          <span class="eyebrow"><i class="bi bi-clipboard-check-fill"></i>&nbsp;Paket Pengadaan</span>
+          <h2 id="pkg-title" class="section-title">Paket ATK Sesuai Kebutuhan Anda</h2>
+          <p class="section-sub mx-auto">Pilih paket pengadaan berdasarkan jenis institusi, atau konsultasikan kebutuhan
+            khusus bersama tim TokoATK.</p>
+        </div>
+        <div class="row g-4" data-stagger>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="pkg-card reveal h-100">
+              <span class="pkg-tag">Sekolah</span>
+              <h3>Paket ATK Sekolah</h3>
+              <p class="pkg-target">Untuk sekolah, guru, tata usaha, dan kegiatan belajar mengajar.</p>
+              <ul>
+                <li><i class="bi bi-check-lg"></i> Alat tulis kelas &amp; administrasi</li>
+                <li><i class="bi bi-check-lg"></i> Perlengkapan tata usaha</li>
+                <li><i class="bi bi-check-lg"></i> Konsultasi jumlah kebutuhan</li>
+              </ul>
+              <a href="paket/paket-sekolah.html" class="btn btn-outline-atk"
+                data-wa-msg="Halo TokoATK, saya ingin berkonsultasi mengenai paket pengadaan Paket ATK Sekolah.">Konsultasikan
+                Paket</a>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="pkg-card reveal h-100">
+              <span class="pkg-tag">Kampus</span>
+              <h3>Paket ATK Kampus</h3>
+              <p class="pkg-target">Untuk universitas, fakultas, administrasi, dan ruang dosen.</p>
+              <ul>
+                <li><i class="bi bi-check-lg"></i> ATK ruang dosen &amp; fakultas</li>
+                <li><i class="bi bi-check-lg"></i> Perlengkapan administrasi kampus</li>
+                <li><i class="bi bi-check-lg"></i> Dukungan pengadaan berkala</li>
+              </ul>
+              <a href="paket/paket-kampus.html" class="btn btn-outline-atk"
+                data-wa-msg="Halo TokoATK, saya ingin berkonsultasi mengenai paket pengadaan Paket ATK Kampus.">Konsultasikan
+                Paket</a>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="pkg-card reveal h-100">
+              <span class="pkg-tag">Perusahaan</span>
+              <h3>Paket ATK Perusahaan</h3>
+              <p class="pkg-target">Untuk kantor, divisi, tim administrasi, dan General Affair.</p>
+              <ul>
+                <li><i class="bi bi-check-lg"></i> Kebutuhan ATK rutin kantor</li>
+                <li><i class="bi bi-check-lg"></i> Dukungan tim General Affair</li>
+                <li><i class="bi bi-check-lg"></i> Fleksibel sesuai divisi</li>
+              </ul>
+              <a href="paket/paket-perusahaan.html" class="btn btn-outline-atk"
+                data-wa-msg="Halo TokoATK, saya ingin berkonsultasi mengenai paket pengadaan Paket ATK Perusahaan.">Konsultasikan
+                Paket</a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="text-center mt-4">
+          <a href="paket.html" class="fw-semibold text-primary-atk">
+            Semua Paket <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================== WHY CHOOSE US / KEUNGGULAN ============================== -->
+    <section class="section section-wash section-wash--alt" aria-labelledby="why-title">
+      <div class="container-xl">
+        <div class="section-head center mx-auto">
+          <span class="eyebrow"><i class="bi bi-award-fill"></i>&nbsp;Mengapa Memilih Kami</span>
+          <h2 id="why-title" class="section-title">Mengapa Memilih TokoATK?</h2>
+        </div>
+        <div class="row g-4" data-stagger>
+          <div class="col-md-4">
+            <div class="vp-card reveal text-center">
+              <i class="bi bi-grid-fill vp-icon mx-auto"></i>
+              <h3>Pilihan Produk Beragam</h3>
+              <p>ATK, furniture, hingga solusi display dalam satu mitra pengadaan.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="vp-card reveal text-center">
+              <i class="bi bi-briefcase-fill vp-icon mx-auto"></i>
+              <h3>Fokus Kebutuhan B2B</h3>
+              <p>Dirancang khusus untuk pengadaan instansi, sekolah, kampus, dan perusahaan.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="vp-card reveal text-center">
+              <i class="bi bi-chat-dots-fill vp-icon mx-auto"></i>
+              <h3>Konsultasi Pengadaan</h3>
+              <p>Tim kami membantu menentukan produk dan jumlah sesuai kebutuhan.</p>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-4">
+          <a href="tentang-kami.html" class="fw-semibold text-primary-atk">
+            Selengkapnya Tentang Kami <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== ALUR PENGADAAN ============================== -->
+    <section class="section section-soft" aria-labelledby="flow-title">
+      <div class="container-xl">
+        <div class="section-head center mx-auto">
+          <span class="eyebrow"><i class="bi bi-signpost-split-fill"></i>&nbsp;Proses Kerja</span>
+          <h2 id="flow-title" class="section-title">Alur Pengadaan Bersama TokoATK</h2>
+          <p class="section-sub mx-auto">Empat langkah sederhana dari konsultasi kebutuhan hingga barang sampai di
+            lokasi
+            Anda.</p>
+        </div>
+        <div class="flow-wrap" data-stagger>
+          <div class="flow-step reveal">
+            <div class="flow-index">01</div>
+            <h3>Konsultasi Kebutuhan</h3>
+            <p>Sampaikan kebutuhan ATK, furniture, atau peralatan kantor Anda melalui WhatsApp.</p>
+          </div>
+          <div class="flow-step reveal">
+            <div class="flow-index">02</div>
+            <h3>Penawaran &amp; Rekomendasi</h3>
+            <p>Tim TokoATK menyiapkan rekomendasi produk dan penawaran sesuai kebutuhan.</p>
+          </div>
+          <div class="flow-step reveal">
+            <div class="flow-index">03</div>
+            <h3>Konfirmasi Pesanan</h3>
+            <p>Setelah disepakati, pesanan dikonfirmasi dan diproses oleh tim kami.</p>
+          </div>
+          <div class="flow-step reveal">
+            <div class="flow-index">04</div>
+            <h3>Pengiriman</h3>
+            <p>Barang dikirim ke lokasi instansi, sekolah, kampus, atau kantor Anda.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== TESTIMONI ============================== -->
+    <section class="section section-wash testi-loop-section" aria-labelledby="testi-title">
+      <div class="container-xl">
+
+        <div class="section-head center mx-auto">
+          <span class="eyebrow">
+            <i class="bi bi-chat-quote-fill"></i>&nbsp;Testimoni
+          </span>
+          <h2 id="testi-title" class="section-title">Apa Kata Klien Kami</h2>
+          <p class="section-sub">
+            Pengalaman dan kepuasan klien menjadi bagian penting dari
+            komitmen TokoATK dalam menyediakan kebutuhan ATK dan
+            peralatan kantor.
+          </p>
+        </div>
+
+        <div class="testi-loop">
+          <div class="testi-loop-track">
+
+            <!-- TESTIMONI 1 -->
+            <div class="testi-loop-card">
+              <div class="testi-loop-stars">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+              <p class="testi-loop-text">
+                Pelayanan pengadaan kebutuhan kantor sangat membantu
+                dan proses komunikasinya mudah.
+              </p>
+              <div class="testi-loop-person">
+                <div class="testi-loop-avatar">
+                  <i class="bi bi-building-fill"></i>
                 </div>
-                <p class="about-feature-name">ATK</p>
-              </a>
+                <div>
+                  <strong>Klien Perusahaan</strong>
+                  <span>Pengadaan Peralatan Kantor</span>
+                </div>
+              </div>
+            </div>
 
-              <a href="produk/kursi-kantor.html" class="about-feature-card" data-slide>
-                <div class="about-feature-icon">
+            <!-- TESTIMONI 2 -->
+            <div class="testi-loop-card">
+              <div class="testi-loop-stars">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+              <p class="testi-loop-text">
+                Kebutuhan ATK untuk operasional kantor dapat dipenuhi
+                dengan pilihan produk yang cukup lengkap.
+              </p>
+              <div class="testi-loop-person">
+                <div class="testi-loop-avatar">
                   <i class="bi bi-person-workspace"></i>
                 </div>
-                <p class="about-feature-name">Kursi Kantor</p>
-              </a>
-
-              <a href="produk/lemari-arsip.html" class="about-feature-card" data-slide>
-                <div class="about-feature-icon">
-                  <i class="bi bi-archive-fill"></i>
+                <div>
+                  <strong>Klien Instansi</strong>
+                  <span>Pengadaan ATK</span>
                 </div>
-                <p class="about-feature-name">Lemari Arsip</p>
-              </a>
+              </div>
+            </div>
 
-              <a href="produk/meja-kantor.html" class="about-feature-card" data-slide>
-                <div class="about-feature-icon">
-                  <i class="bi bi-table"></i>
+            <!-- TESTIMONI 3 -->
+            <div class="testi-loop-card">
+              <div class="testi-loop-stars">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+              <p class="testi-loop-text">
+                Pengadaan meja dan kursi kantor menjadi lebih praktis
+                karena kebutuhan dapat dikonsultasikan terlebih dahulu.
+              </p>
+              <div class="testi-loop-person">
+                <div class="testi-loop-avatar">
+                  <i class="bi bi-person-badge-fill"></i>
                 </div>
-                <p class="about-feature-name">Meja Kantor</p>
-              </a>
-
-              <a href="produk/perlengkapan-kantor.html" class="about-feature-card" data-slide>
-                <div class="about-feature-icon">
-                  <i class="bi bi-inboxes-fill"></i>
+                <div>
+                  <strong>Klien Perusahaan</strong>
+                  <span>Furniture Kantor</span>
                 </div>
-                <p class="about-feature-name">Perlengkapan Kantor</p>
-              </a>
+              </div>
+            </div>
 
-              <a href="produk/videotron.html" class="about-feature-card" data-slide>
-                <div class="about-feature-icon">
-                  <i class="bi bi-easel2-fill"></i>
+            <!-- TESTIMONI 4 -->
+            <div class="testi-loop-card">
+              <div class="testi-loop-stars">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+              <p class="testi-loop-text">
+                Produk untuk kebutuhan ruang kerja dan perlengkapan
+                kantor tersedia dalam beberapa pilihan sesuai kebutuhan.
+              </p>
+              <div class="testi-loop-person">
+                <div class="testi-loop-avatar">
+                  <i class="bi bi-briefcase-fill"></i>
                 </div>
-                <p class="about-feature-name">Videotron</p>
-              </a>
-
-              <a href="produk/smart-board.html" class="about-feature-card" data-slide>
-                <div class="about-feature-icon">
-                  <i class="bi bi-display-fill"></i>
+                <div>
+                  <strong>Klien Bisnis</strong>
+                  <span>Perlengkapan Kantor</span>
                 </div>
-                <p class="about-feature-name">Smart Board</p>
-              </a>
+              </div>
+            </div>
 
-              <a href="produk/furniture-kantor.html" class="about-feature-card" data-slide>
-                <div class="about-feature-icon">
-                  <i class="bi bi-buildings-fill"></i>
+            <!-- DUPLIKASI TESTIMONI (CSS Infinite Loop Animation) -->
+            <div class="testi-loop-card" aria-hidden="true">
+              <div class="testi-loop-stars">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+              <p class="testi-loop-text">
+                Pelayanan pengadaan kebutuhan kantor sangat membantu
+                dan proses komunikasinya mudah.
+              </p>
+              <div class="testi-loop-person">
+                <div class="testi-loop-avatar">
+                  <i class="bi bi-building-fill"></i>
                 </div>
-                <p class="about-feature-name">Furniture Kantor</p>
-              </a>
-
+                <div>
+                  <strong>Klien Perusahaan</strong>
+                  <span>Pengadaan Peralatan Kantor</span>
+                </div>
+              </div>
             </div>
 
-            <div class="about-carousel__dots" id="aboutCarouselDots"></div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============================== VALUE PROPOSITIONS ============================== -->
-  <section class="section section-soft" aria-labelledby="vp-title">
-    <div class="container-xl">
-      <div class="section-head center mx-auto">
-        <span class="eyebrow"><i class="bi bi-stars"></i>&nbsp;Kenapa TokoATK</span>
-        <h2 id="vp-title" class="section-title">Dirancang untuk Kebutuhan Pengadaan B2B</h2>
-        <p class="section-sub mx-auto">Bukan sekadar toko ATK — TokoATK adalah mitra pengadaan yang memahami alur kerja
-          instansi, sekolah, kampus, dan perusahaan.</p>
-      </div>
-      <div class="vp-marquee reveal" data-speed="34">
-        <div class="vp-marquee__track" id="vpMarqueeTrack">
-
-          <div class="vp-marquee__group">
-            <div class="vp-card">
-              <span class="vp-num">01</span>
-              <i class="bi bi-briefcase-fill vp-icon"></i>
-              <h3>Pengadaan B2B</h3>
-              <p>Melayani kebutuhan pengadaan untuk perusahaan, sekolah, kampus, dan institusi pemerintah.</p>
+            <div class="testi-loop-card" aria-hidden="true">
+              <div class="testi-loop-stars">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+              <p class="testi-loop-text">
+                Kebutuhan ATK untuk operasional kantor dapat dipenuhi
+                dengan pilihan produk yang cukup lengkap.
+              </p>
+              <div class="testi-loop-person">
+                <div class="testi-loop-avatar">
+                  <i class="bi bi-person-workspace"></i>
+                </div>
+                <div>
+                  <strong>Klien Instansi</strong>
+                  <span>Pengadaan ATK</span>
+                </div>
+              </div>
             </div>
-            <div class="vp-card">
-              <span class="vp-num">02</span>
-              <i class="bi bi-grid-3x3-gap-fill vp-icon"></i>
-              <h3>Produk Beragam</h3>
-              <p>Mulai dari ATK harian hingga furniture kantor dan perangkat display seperti smart board.</p>
-            </div>
-            <div class="vp-card">
-              <span class="vp-num">03</span>
-              <i class="bi bi-chat-square-text-fill vp-icon"></i>
-              <h3>Konsultasi Kebutuhan</h3>
-              <p>Tim TokoATK membantu memilih produk yang sesuai dengan kebutuhan dan anggaran Anda.</p>
-            </div>
-            <div class="vp-card">
-              <span class="vp-num">04</span>
-              <i class="bi bi-diagram-3-fill vp-icon"></i>
-              <h3>Pengadaan Terintegrasi</h3>
-              <p>Berbagai kebutuhan ATK dan peralatan kantor dapat dikonsultasikan dalam satu tempat.</p>
-            </div>
-            <div class="vp-card">
-              <span class="vp-num">05</span>
-              <i class="bi bi-geo-alt-fill vp-icon"></i>
-              <h3>Melayani Berbagai Kota</h3>
-              <p>Fokus layanan di Malang, Surabaya, Jakarta, Denpasar, dan Makassar.</p>
-            </div>
-            <div class="vp-card">
-              <span class="vp-num">06</span>
-              <i class="bi bi-lightning-charge-fill vp-icon"></i>
-              <h3>Respon Cepat</h3>
-              <p>Konsultasi dan permintaan penawaran dapat dilakukan langsung melalui WhatsApp.</p>
-            </div>
-          </div>
 
-          <div class="vp-marquee__group" aria-hidden="true">
-            <div class="vp-card">
-              <span class="vp-num">01</span>
-              <i class="bi bi-briefcase-fill vp-icon"></i>
-              <h3>Pengadaan B2B</h3>
-              <p>Melayani kebutuhan pengadaan untuk perusahaan, sekolah, kampus, dan institusi pemerintah.</p>
+            <div class="testi-loop-card" aria-hidden="true">
+              <div class="testi-loop-stars">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+              <p class="testi-loop-text">
+                Pengadaan meja dan kursi kantor menjadi lebih praktis
+                karena kebutuhan dapat dikonsultasikan terlebih dahulu.
+              </p>
+              <div class="testi-loop-person">
+                <div class="testi-loop-avatar">
+                  <i class="bi bi-person-badge-fill"></i>
+                </div>
+                <div>
+                  <strong>Klien Perusahaan</strong>
+                  <span>Furniture Kantor</span>
+                </div>
+              </div>
             </div>
-            <div class="vp-card">
-              <span class="vp-num">02</span>
-              <i class="bi bi-grid-3x3-gap-fill vp-icon"></i>
-              <h3>Produk Beragam</h3>
-              <p>Mulai dari ATK harian hingga furniture kantor dan perangkat display seperti smart board.</p>
+
+            <div class="testi-loop-card" aria-hidden="true">
+              <div class="testi-loop-stars">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+              <p class="testi-loop-text">
+                Produk untuk kebutuhan ruang kerja dan perlengkapan
+                kantor tersedia dalam beberapa pilihan sesuai kebutuhan.
+              </p>
+              <div class="testi-loop-person">
+                <div class="testi-loop-avatar">
+                  <i class="bi bi-briefcase-fill"></i>
+                </div>
+                <div>
+                  <strong>Klien Bisnis</strong>
+                  <span>Perlengkapan Kantor</span>
+                </div>
+              </div>
             </div>
-            <div class="vp-card">
-              <span class="vp-num">03</span>
-              <i class="bi bi-chat-square-text-fill vp-icon"></i>
-              <h3>Konsultasi Kebutuhan</h3>
-              <p>Tim TokoATK membantu memilih produk yang sesuai dengan kebutuhan dan anggaran Anda.</p>
-            </div>
-            <div class="vp-card">
-              <span class="vp-num">04</span>
-              <i class="bi bi-diagram-3-fill vp-icon"></i>
-              <h3>Pengadaan Terintegrasi</h3>
-              <p>Berbagai kebutuhan ATK dan peralatan kantor dapat dikonsultasikan dalam satu tempat.</p>
-            </div>
-            <div class="vp-card">
-              <span class="vp-num">05</span>
-              <i class="bi bi-geo-alt-fill vp-icon"></i>
-              <h3>Melayani Berbagai Kota</h3>
-              <p>Fokus layanan di Malang, Surabaya, Jakarta, Denpasar, dan Makassar.</p>
-            </div>
-            <div class="vp-card">
-              <span class="vp-num">06</span>
-              <i class="bi bi-lightning-charge-fill vp-icon"></i>
-              <h3>Respon Cepat</h3>
-              <p>Konsultasi dan permintaan penawaran dapat dilakukan langsung melalui WhatsApp.</p>
-            </div>
-          </div>
 
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================== KATEGORI PRODUK ============================== -->
-  <section class="section section-wash" aria-labelledby="cat-title">
-    <div class="container-xl">
-      <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 section-head section-head--wide mb-4">
-        <div>
-          <span class="eyebrow"><i class="bi bi-boxes"></i> Katalog Produk</span>
-          <h2 id="cat-title" class="section-title mb-0">Kategori Produk TokoATK</h2>
-        </div>
-        <a href="produk.html" class="fw-semibold text-primary-atk">Lihat Semua Produk <i class="bi bi-arrow-right"></i></a>
-      </div>
-      <div class="cat-scroller" data-stagger>
-
-        <!-- ALAT TULIS KANTOR -->
-        <div class="cat-card reveal">
-          <div class="cat-image">
-            <img src="assets/img/hero/hero-kantor1.webp" alt="Alat Tulis Kantor TokoATK"
-              loading="lazy" decoding="async" width="600" height="400">
-            <div class="cat-icon"><i class="bi bi-pencil-fill"></i></div>
-          </div>
-          <div class="cat-content">
-            <h3 class="cat-name"><a href="produk/alat-tulis-kantor.html">Alat Tulis Kantor</a></h3>
-            <p class="cat-desc">Kebutuhan ATK harian untuk kantor, sekolah, dan kampus.</p>
-            <a href="produk/alat-tulis-kantor.html" class="cat-link">Lihat Produk <i class="bi bi-arrow-right"></i></a>
-          </div>
-        </div>
-
-        <!-- KURSI KANTOR -->
-        <div class="cat-card reveal">
-          <div class="cat-image">
-            <img src="assets/img/hero/hero-kantor2.webp" alt="Kursi Kantor TokoATK"
-              loading="lazy" decoding="async" width="600" height="400">
-            <div class="cat-icon"><i class="bi bi-person-workspace"></i></div>
-          </div>
-          <div class="cat-content">
-            <h3 class="cat-name"><a href="produk/kursi-kantor.html">Kursi Kantor</a></h3>
-            <p class="cat-desc">Kursi kerja, kursi direktur, hingga kursi kantor ergonomis.</p>
-            <a href="produk/kursi-kantor.html" class="cat-link">Lihat Produk <i class="bi bi-arrow-right"></i></a>
-          </div>
-        </div>
-
-        <!-- MEJA KANTOR -->
-        <div class="cat-card reveal">
-          <div class="cat-image">
-            <img src="assets/img/hero/hero-kantor3.webp" alt="Meja Kantor TokoATK" loading="lazy" decoding="async" width="600" height="400">
-            <div class="cat-icon"><i class="bi bi-border-all"></i></div>
-          </div>
-          <div class="cat-content">
-            <h3 class="cat-name"><a href="produk/meja-kantor.html">Meja Kantor</a></h3>
-            <p class="cat-desc">Meja kerja dan meja kantor untuk berbagai kebutuhan ruang.</p>
-            <a href="produk/meja-kantor.html" class="cat-link">Lihat Produk <i class="bi bi-arrow-right"></i></a>
-          </div>
-        </div>
-
-        <!-- LEMARI ARSIP -->
-        <div class="cat-card reveal">
-          <div class="cat-image">
-            <img src="assets/img/hero/hero-kantor1.webp" alt="Lemari Arsip TokoATK"
-              loading="lazy" decoding="async" width="600" height="400">
-            <div class="cat-icon"><i class="bi bi-archive-fill"></i></div>
-          </div>
-          <div class="cat-content">
-            <h3 class="cat-name"><a href="produk/lemari-arsip.html">Lemari Arsip</a></h3>
-            <p class="cat-desc">Penyimpanan dokumen dan arsip kantor yang rapi dan tahan lama.</p>
-            <a href="produk/lemari-arsip.html" class="cat-link">Lihat Produk <i class="bi bi-arrow-right"></i></a>
-          </div>
-        </div>
-
-        <!-- PERLENGKAPAN KANTOR -->
-        <div class="cat-card reveal">
-          <div class="cat-image">
-            <img src="assets/img/hero/hero-kantor2.webp" alt="Perlengkapan Kantor TokoATK"
-              loading="lazy" decoding="async" width="600" height="400">
-            <div class="cat-icon"><i class="bi bi-box-seam-fill"></i></div>
-          </div>
-          <div class="cat-content">
-            <h3 class="cat-name"><a href="produk/perlengkapan-kantor.html">Perlengkapan Kantor</a></h3>
-            <p class="cat-desc">Perlengkapan pendukung operasional kantor sehari-hari.</p>
-            <a href="produk/perlengkapan-kantor.html" class="cat-link">Lihat Produk <i class="bi bi-arrow-right"></i></a>
-          </div>
-        </div>
-
-        <!-- VIDEOTRON -->
-        <div class="cat-card reveal">
-          <div class="cat-image">
-            <img src="assets/img/hero/hero-kantor3.webp" alt="Videotron TokoATK" loading="lazy" decoding="async" width="600" height="400">
-            <div class="cat-icon"><i class="bi bi-display-fill"></i></div>
-          </div>
-          <div class="cat-content">
-            <h3 class="cat-name"><a href="produk/videotron.html">Videotron</a></h3>
-            <p class="cat-desc">Videotron LED indoor dan outdoor untuk kebutuhan display.</p>
-            <a href="produk/videotron.html" class="cat-link">Lihat Produk <i class="bi bi-arrow-right"></i></a>
-          </div>
-        </div>
-
-        <!-- SMART BOARD -->
-        <div class="cat-card reveal">
-          <div class="cat-image">
-            <img src="assets/img/hero/hero-kantor1.webp" alt="Smart Board TokoATK" loading="lazy" decoding="async" width="600" height="400">
-            <div class="cat-icon"><i class="bi bi-easel2-fill"></i></div>
-          </div>
-          <div class="cat-content">
-            <h3 class="cat-name"><a href="produk/smart-board.html">Smart Board</a></h3>
-            <p class="cat-desc">Interactive flat panel untuk ruang kelas dan ruang rapat.</p>
-            <a href="produk/smart-board.html" class="cat-link">Lihat Produk <i class="bi bi-arrow-right"></i></a>
-          </div>
-        </div>
-
-        <!-- FURNITURE KANTOR -->
-        <div class="cat-card reveal">
-          <div class="cat-image">
-            <img src="assets/img/hero/hero-kantor2.webp" alt="Furniture Kantor TokoATK"
-              loading="lazy" decoding="async" width="600" height="400">
-            <div class="cat-icon"><i class="bi bi-building-fill"></i></div>
-          </div>
-          <div class="cat-content">
-            <h3 class="cat-name"><a href="produk/furniture-kantor.html">Furniture Kantor</a></h3>
-            <p class="cat-desc">Furniture pendukung untuk melengkapi ruang kerja instansi.</p>
-            <a href="produk/furniture-kantor.html" class="cat-link">Lihat Produk <i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
 
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============================== PAKET PENGADAAN ============================== -->
-  <section class="section section-soft pkg-teaser" aria-labelledby="pkg-title">
-    <div class="container-xl">
-      <div class="section-head center mx-auto">
-        <span class="eyebrow"><i class="bi bi-clipboard-check-fill"></i>&nbsp;Paket Pengadaan</span>
-        <h2 id="pkg-title" class="section-title">Paket ATK Sesuai Kebutuhan Anda</h2>
-        <p class="section-sub mx-auto">Pilih paket pengadaan berdasarkan jenis institusi, atau konsultasikan kebutuhan
-          khusus bersama tim TokoATK.</p>
-      </div>
-      <div class="row g-4" data-stagger>
-
-        <div class="col-md-6 col-lg-4">
-          <div class="pkg-card reveal h-100">
-            <span class="pkg-tag">Sekolah</span>
-            <h3>Paket ATK Sekolah</h3>
-            <p class="pkg-target">Untuk sekolah, guru, tata usaha, dan kegiatan belajar mengajar.</p>
-            <ul>
-              <li><i class="bi bi-check-lg"></i> Alat tulis kelas &amp; administrasi</li>
-              <li><i class="bi bi-check-lg"></i> Perlengkapan tata usaha</li>
-              <li><i class="bi bi-check-lg"></i> Konsultasi jumlah kebutuhan</li>
-            </ul>
-            <a href="paket/paket-sekolah.html" class="btn btn-outline-atk"
-              data-wa-msg="Halo TokoATK, saya ingin berkonsultasi mengenai paket pengadaan Paket ATK Sekolah.">Konsultasikan
-              Paket</a>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <div class="pkg-card reveal h-100">
-            <span class="pkg-tag">Kampus</span>
-            <h3>Paket ATK Kampus</h3>
-            <p class="pkg-target">Untuk universitas, fakultas, administrasi, dan ruang dosen.</p>
-            <ul>
-              <li><i class="bi bi-check-lg"></i> ATK ruang dosen &amp; fakultas</li>
-              <li><i class="bi bi-check-lg"></i> Perlengkapan administrasi kampus</li>
-              <li><i class="bi bi-check-lg"></i> Dukungan pengadaan berkala</li>
-            </ul>
-            <a href="paket/paket-kampus.html" class="btn btn-outline-atk"
-              data-wa-msg="Halo TokoATK, saya ingin berkonsultasi mengenai paket pengadaan Paket ATK Kampus.">Konsultasikan
-              Paket</a>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <div class="pkg-card reveal h-100">
-            <span class="pkg-tag">Perusahaan</span>
-            <h3>Paket ATK Perusahaan</h3>
-            <p class="pkg-target">Untuk kantor, divisi, tim administrasi, dan General Affair.</p>
-            <ul>
-              <li><i class="bi bi-check-lg"></i> Kebutuhan ATK rutin kantor</li>
-              <li><i class="bi bi-check-lg"></i> Dukungan tim General Affair</li>
-              <li><i class="bi bi-check-lg"></i> Fleksibel sesuai divisi</li>
-            </ul>
-            <a href="paket/paket-perusahaan.html" class="btn btn-outline-atk"
-              data-wa-msg="Halo TokoATK, saya ingin berkonsultasi mengenai paket pengadaan Paket ATK Perusahaan.">Konsultasikan
-              Paket</a>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="text-center mt-4">
-        <a href="paket.html" class="fw-semibold text-primary-atk">
-          Semua Paket <i class="bi bi-arrow-right"></i>
-        </a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============================== WHY CHOOSE US / KEUNGGULAN ============================== -->
-  <section class="section section-wash section-wash--alt" aria-labelledby="why-title">
-    <div class="container-xl">
-      <div class="section-head center mx-auto">
-        <span class="eyebrow"><i class="bi bi-award-fill"></i>&nbsp;Mengapa Memilih Kami</span>
-        <h2 id="why-title" class="section-title">Mengapa Memilih TokoATK?</h2>
-      </div>
-      <div class="row g-4" data-stagger>
-        <div class="col-md-4">
-          <div class="vp-card reveal text-center">
-            <i class="bi bi-grid-fill vp-icon mx-auto"></i>
-            <h3>Pilihan Produk Beragam</h3>
-            <p>ATK, furniture, hingga solusi display dalam satu mitra pengadaan.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="vp-card reveal text-center">
-            <i class="bi bi-briefcase-fill vp-icon mx-auto"></i>
-            <h3>Fokus Kebutuhan B2B</h3>
-            <p>Dirancang khusus untuk pengadaan instansi, sekolah, kampus, dan perusahaan.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="vp-card reveal text-center">
-            <i class="bi bi-chat-dots-fill vp-icon mx-auto"></i>
-            <h3>Konsultasi Pengadaan</h3>
-            <p>Tim kami membantu menentukan produk dan jumlah sesuai kebutuhan.</p>
-          </div>
-        </div>
-      </div>
-      <div class="text-center mt-4">
-        <a href="tentang-kami.html" class="fw-semibold text-primary-atk">
-          Selengkapnya Tentang Kami <i class="bi bi-arrow-right"></i>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================== ALUR PENGADAAN ============================== -->
-  <section class="section section-soft" aria-labelledby="flow-title">
-    <div class="container-xl">
-      <div class="section-head center mx-auto">
-        <span class="eyebrow"><i class="bi bi-signpost-split-fill"></i>&nbsp;Proses Kerja</span>
-        <h2 id="flow-title" class="section-title">Alur Pengadaan Bersama TokoATK</h2>
-        <p class="section-sub mx-auto">Empat langkah sederhana dari konsultasi kebutuhan hingga barang sampai di lokasi
-          Anda.</p>
-      </div>
-      <div class="flow-wrap" data-stagger>
-        <div class="flow-step reveal">
-          <div class="flow-index">01</div>
-          <h3>Konsultasi Kebutuhan</h3>
-          <p>Sampaikan kebutuhan ATK, furniture, atau peralatan kantor Anda melalui WhatsApp.</p>
-        </div>
-        <div class="flow-step reveal">
-          <div class="flow-index">02</div>
-          <h3>Penawaran &amp; Rekomendasi</h3>
-          <p>Tim TokoATK menyiapkan rekomendasi produk dan penawaran sesuai kebutuhan.</p>
-        </div>
-        <div class="flow-step reveal">
-          <div class="flow-index">03</div>
-          <h3>Konfirmasi Pesanan</h3>
-          <p>Setelah disepakati, pesanan dikonfirmasi dan diproses oleh tim kami.</p>
-        </div>
-        <div class="flow-step reveal">
-          <div class="flow-index">04</div>
-          <h3>Pengiriman</h3>
-          <p>Barang dikirim ke lokasi instansi, sekolah, kampus, atau kantor Anda.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================== TESTIMONI ============================== -->
-  <section class="section section-wash testi-loop-section" aria-labelledby="testi-title">
-    <div class="container-xl">
-
-      <div class="section-head center mx-auto">
-        <span class="eyebrow">
-          <i class="bi bi-chat-quote-fill"></i>&nbsp;Testimoni
-        </span>
-        <h2 id="testi-title" class="section-title">Apa Kata Klien Kami</h2>
-        <p class="section-sub">
-          Pengalaman dan kepuasan klien menjadi bagian penting dari
-          komitmen TokoATK dalam menyediakan kebutuhan ATK dan
-          peralatan kantor.
-        </p>
-      </div>
-
-      <div class="testi-loop">
-        <div class="testi-loop-track">
-
-          <!-- TESTIMONI 1 -->
-          <div class="testi-loop-card">
-            <div class="testi-loop-stars">
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-            </div>
-            <p class="testi-loop-text">
-              Pelayanan pengadaan kebutuhan kantor sangat membantu
-              dan proses komunikasinya mudah.
-            </p>
-            <div class="testi-loop-person">
-              <div class="testi-loop-avatar">
-                <i class="bi bi-building-fill"></i>
-              </div>
-              <div>
-                <strong>Klien Perusahaan</strong>
-                <span>Pengadaan Peralatan Kantor</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- TESTIMONI 2 -->
-          <div class="testi-loop-card">
-            <div class="testi-loop-stars">
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-            </div>
-            <p class="testi-loop-text">
-              Kebutuhan ATK untuk operasional kantor dapat dipenuhi
-              dengan pilihan produk yang cukup lengkap.
-            </p>
-            <div class="testi-loop-person">
-              <div class="testi-loop-avatar">
-                <i class="bi bi-person-workspace"></i>
-              </div>
-              <div>
-                <strong>Klien Instansi</strong>
-                <span>Pengadaan ATK</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- TESTIMONI 3 -->
-          <div class="testi-loop-card">
-            <div class="testi-loop-stars">
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-            </div>
-            <p class="testi-loop-text">
-              Pengadaan meja dan kursi kantor menjadi lebih praktis
-              karena kebutuhan dapat dikonsultasikan terlebih dahulu.
-            </p>
-            <div class="testi-loop-person">
-              <div class="testi-loop-avatar">
-                <i class="bi bi-person-badge-fill"></i>
-              </div>
-              <div>
-                <strong>Klien Perusahaan</strong>
-                <span>Furniture Kantor</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- TESTIMONI 4 -->
-          <div class="testi-loop-card">
-            <div class="testi-loop-stars">
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-            </div>
-            <p class="testi-loop-text">
-              Produk untuk kebutuhan ruang kerja dan perlengkapan
-              kantor tersedia dalam beberapa pilihan sesuai kebutuhan.
-            </p>
-            <div class="testi-loop-person">
-              <div class="testi-loop-avatar">
-                <i class="bi bi-briefcase-fill"></i>
-              </div>
-              <div>
-                <strong>Klien Bisnis</strong>
-                <span>Perlengkapan Kantor</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- DUPLIKASI TESTIMONI (CSS Infinite Loop Animation) -->
-          <div class="testi-loop-card" aria-hidden="true">
-            <div class="testi-loop-stars">
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-            </div>
-            <p class="testi-loop-text">
-              Pelayanan pengadaan kebutuhan kantor sangat membantu
-              dan proses komunikasinya mudah.
-            </p>
-            <div class="testi-loop-person">
-              <div class="testi-loop-avatar">
-                <i class="bi bi-building-fill"></i>
-              </div>
-              <div>
-                <strong>Klien Perusahaan</strong>
-                <span>Pengadaan Peralatan Kantor</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="testi-loop-card" aria-hidden="true">
-            <div class="testi-loop-stars">
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-            </div>
-            <p class="testi-loop-text">
-              Kebutuhan ATK untuk operasional kantor dapat dipenuhi
-              dengan pilihan produk yang cukup lengkap.
-            </p>
-            <div class="testi-loop-person">
-              <div class="testi-loop-avatar">
-                <i class="bi bi-person-workspace"></i>
-              </div>
-              <div>
-                <strong>Klien Instansi</strong>
-                <span>Pengadaan ATK</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="testi-loop-card" aria-hidden="true">
-            <div class="testi-loop-stars">
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-            </div>
-            <p class="testi-loop-text">
-              Pengadaan meja dan kursi kantor menjadi lebih praktis
-              karena kebutuhan dapat dikonsultasikan terlebih dahulu.
-            </p>
-            <div class="testi-loop-person">
-              <div class="testi-loop-avatar">
-                <i class="bi bi-person-badge-fill"></i>
-              </div>
-              <div>
-                <strong>Klien Perusahaan</strong>
-                <span>Furniture Kantor</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="testi-loop-card" aria-hidden="true">
-            <div class="testi-loop-stars">
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-            </div>
-            <p class="testi-loop-text">
-              Produk untuk kebutuhan ruang kerja dan perlengkapan
-              kantor tersedia dalam beberapa pilihan sesuai kebutuhan.
-            </p>
-            <div class="testi-loop-person">
-              <div class="testi-loop-avatar">
-                <i class="bi bi-briefcase-fill"></i>
-              </div>
-              <div>
-                <strong>Klien Bisnis</strong>
-                <span>Perlengkapan Kantor</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============================== FAQ ============================== -->
-  <section class="section section-soft" aria-labelledby="faq-title">
-    <div class="container-xl">
-      <div class="row g-5">
-        <div class="col-lg-4">
-          <span class="eyebrow"><i class="bi bi-question-circle-fill"></i>&nbsp;FAQ</span>
-          <h2 id="faq-title" class="section-title">Pertanyaan yang Sering Diajukan</h2>
-          <p class="section-sub">Belum menemukan jawaban? Konsultasikan langsung kebutuhan Anda.</p>
-          <a href="https://wa.me/6288989643555"
-            data-wa-msg="Halo TokoATK, saya ingin bertanya lebih lanjut mengenai layanan pengadaan."
-            class="btn btn-primary-atk mt-2">
-            <i class="bi bi-whatsapp"></i> Tanya via WhatsApp
-          </a>
-        </div>
-        <div class="col-lg-8">
-          <div class="accordion accordion-atk" id="faqAccordion">
-            <div class="accordion-item">
-              <h3 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">Apakah TokoATK melayani pengadaan untuk perusahaan?</button></h3>
-              <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">Ya, TokoATK melayani pengadaan ATK, furniture, dan peralatan kantor
-                  untuk perusahaan swasta, termasuk kebutuhan rutin maupun proyek tertentu.</div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">Apakah bisa melakukan pemesanan dalam jumlah
-                  besar?</button></h3>
-              <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">Bisa. TokoATK terbiasa melayani pemesanan dalam jumlah besar untuk
-                  kebutuhan pengadaan instansi, sekolah, kampus, dan perusahaan.</div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">Apakah TokoATK melayani sekolah dan
-                  kampus?</button>
-              </h3>
-              <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">Ya, tersedia paket khusus untuk kebutuhan ATK sekolah dan kampus, mulai
-                  dari alat tulis hingga perlengkapan administrasi.</div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">Apakah tersedia paket pengadaan ATK?</button>
-              </h3>
-              <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">Tersedia beberapa paket pengadaan seperti paket sekolah, kampus,
-                  perusahaan, dan instansi yang dapat disesuaikan dengan kebutuhan Anda.</div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">Apakah bisa meminta penawaran harga?</button>
-              </h3>
-              <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">Bisa. Silakan hubungi tim TokoATK melalui WhatsApp untuk mendapatkan
-                  penawaran sesuai kebutuhan pengadaan Anda.</div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#faq6" aria-expanded="false" aria-controls="faq6">Kota mana saja yang dilayani?</button></h3>
-              <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">TokoATK berfokus melayani area Malang, Surabaya, Jakarta, Denpasar, dan
-                  Makassar.</div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#faq7" aria-expanded="false" aria-controls="faq7">Bagaimana cara melakukan pemesanan?</button></h3>
-              <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">Pemesanan dilakukan melalui konsultasi WhatsApp, di mana tim TokoATK
-                  akan membantu menyesuaikan kebutuhan dan menyiapkan penawaran.</div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#faq8" aria-expanded="false" aria-controls="faq8">Apakah produk dapat disesuaikan dengan kebutuhan
-                  instansi?</button></h3>
-              <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                <div class="accordion-body">Ya, TokoATK dapat menyesuaikan pilihan produk dan paket dengan kebutuhan
-                  serta anggaran instansi atau perusahaan.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================== CTA BAND ============================== -->
-  <section class="section pt-0" aria-labelledby="cta-title">
-    <div class="container-xl">
-      <div class="cta-band">
-        <div class="row align-items-center g-4">
-          <div class="col-lg-8">
-            <h2 id="cta-title">Butuh Supplier ATK untuk Instansi atau Perusahaan?</h2>
-            <p>Konsultasikan kebutuhan pengadaan Anda bersama TokoATK — cepat, praktis, dan sesuai kebutuhan.</p>
-          </div>
-          <div class="col-lg-4 text-lg-end">
+    <!-- ============================== FAQ ============================== -->
+    <section class="section section-soft" aria-labelledby="faq-title">
+      <div class="container-xl">
+        <div class="row g-5">
+          <div class="col-lg-4">
+            <span class="eyebrow"><i class="bi bi-question-circle-fill"></i>&nbsp;FAQ</span>
+            <h2 id="faq-title" class="section-title">Pertanyaan yang Sering Diajukan</h2>
+            <p class="section-sub">Belum menemukan jawaban? Konsultasikan langsung kebutuhan Anda.</p>
             <a href="https://wa.me/6288989643555"
-              data-wa-msg="Halo TokoATK, saya ingin berkonsultasi mengenai kebutuhan pengadaan ATK." class="btn btn-wa">
-              <i class="bi bi-whatsapp"></i> Konsultasi via WhatsApp
+              data-wa-msg="Halo TokoATK, saya ingin bertanya lebih lanjut mengenai layanan pengadaan."
+              class="btn btn-primary-atk mt-2">
+              <i class="bi bi-whatsapp"></i> Tanya via WhatsApp
             </a>
           </div>
+          <div class="col-lg-8">
+            <div class="accordion accordion-atk" id="faqAccordion">
+              <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">Apakah TokoATK melayani pengadaan
+                    untuk perusahaan?</button></h3>
+                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">Ya, TokoATK melayani pengadaan ATK, furniture, dan peralatan kantor
+                    untuk perusahaan swasta, termasuk kebutuhan rutin maupun proyek tertentu.</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">Apakah
+                    bisa melakukan pemesanan dalam jumlah
+                    besar?</button></h3>
+                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">Bisa. TokoATK terbiasa melayani pemesanan dalam jumlah besar untuk
+                    kebutuhan pengadaan instansi, sekolah, kampus, dan perusahaan.</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">Apakah
+                    TokoATK melayani sekolah dan
+                    kampus?</button>
+                </h3>
+                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">Ya, tersedia paket khusus untuk kebutuhan ATK sekolah dan kampus, mulai
+                    dari alat tulis hingga perlengkapan administrasi.</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">Apakah
+                    tersedia paket pengadaan ATK?</button>
+                </h3>
+                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">Tersedia beberapa paket pengadaan seperti paket sekolah, kampus,
+                    perusahaan, dan instansi yang dapat disesuaikan dengan kebutuhan Anda.</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">Apakah
+                    bisa meminta penawaran harga?</button>
+                </h3>
+                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">Bisa. Silakan hubungi tim TokoATK melalui WhatsApp untuk mendapatkan
+                    penawaran sesuai kebutuhan pengadaan Anda.</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#faq6" aria-expanded="false" aria-controls="faq6">Kota
+                    mana saja yang dilayani?</button></h3>
+                <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">TokoATK berfokus melayani area Malang, Surabaya, Jakarta, Denpasar, dan
+                    Makassar.</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#faq7" aria-expanded="false"
+                    aria-controls="faq7">Bagaimana cara melakukan pemesanan?</button></h3>
+                <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">Pemesanan dilakukan melalui konsultasi WhatsApp, di mana tim TokoATK
+                    akan membantu menyesuaikan kebutuhan dan menyiapkan penawaran.</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h3 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#faq8" aria-expanded="false" aria-controls="faq8">Apakah
+                    produk dapat disesuaikan dengan kebutuhan
+                    instansi?</button></h3>
+                <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">Ya, TokoATK dapat menyesuaikan pilihan produk dan paket dengan kebutuhan
+                    serta anggaran instansi atau perusahaan.</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- ============================== CTA BAND ============================== -->
+    <section class="section pt-0" aria-labelledby="cta-title">
+      <div class="container-xl">
+        <div class="cta-band">
+          <div class="row align-items-center g-4">
+            <div class="col-lg-8">
+              <h2 id="cta-title">Butuh Supplier ATK untuk Instansi atau Perusahaan?</h2>
+              <p>Konsultasikan kebutuhan pengadaan Anda bersama TokoATK — cepat, praktis, dan sesuai kebutuhan.</p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+              <a href="https://wa.me/6288989643555"
+                data-wa-msg="Halo TokoATK, saya ingin berkonsultasi mengenai kebutuhan pengadaan ATK."
+                class="btn btn-wa">
+                <i class="bi bi-whatsapp"></i> Konsultasi via WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- ============================== FOOTER ============================== -->
@@ -1190,7 +1544,7 @@
       <div class="row g-4">
         <div class="col-lg-4 col-md-6">
           <div class="footer-brand">
-            <a class="navbar-brand-atk" href="/" aria-label="Beranda TokoATK">
+            <a class="navbar-brand-atk" href="index.html">
               <span class="mark">
                 <img src="assets/img/logo-ta.webp" alt="Logo TokoATK" width="42" height="42">
               </span>
@@ -1198,27 +1552,28 @@
             </a>
           </div>
           <p>Supplier dan distributor ATK serta peralatan kantor untuk kebutuhan pengadaan instansi, sekolah,
-            kampus, dan perusahaan.</p>
+            kampus,
+            dan perusahaan.</p>
           <div class="footer-social">
-            <a href="https://wa.me/6288989643555" aria-label="WhatsApp TokoATK" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp"></i></a>
+            <a href="#" aria-label="Instagram TokoATK"><i class="bi bi-instagram"></i></a>
+            <a href="#" aria-label="Facebook TokoATK"><i class="bi bi-facebook"></i></a>
+            <a href="https://wa.me/6288989643555" aria-label="WhatsApp TokoATK"><i class="bi bi-whatsapp"></i></a>
           </div>
         </div>
-        <div class="col-lg-2 col-md-6">
+        <div class="col-lg-2 col-md-6 col-6">
           <h5>Navigasi</h5>
-          <nav aria-label="Navigasi Footer">
-            <ul class="list-unstyled mb-0">
-              <li><a href="/">Beranda</a></li>
-              <li><a href="tentang-kami.html">Tentang Kami</a></li>
-              <li><a href="produk.html">Produk</a></li>
-              <li><a href="paket.html">Paket</a></li>
-              <li><a href="blog.html">Blog</a></li>
-              <li><a href="kontak.html">Kontak</a></li>
-            </ul>
-          </nav>
+          <ul>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="tentang-kami.html">Tentang Kami</a></li>
+            <li><a href="produk.html">Produk</a></li>
+            <li><a href="paket.html">Paket</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="kontak.html">Kontak</a></li>
+          </ul>
         </div>
-        <div class="col-lg-2 col-md-6">
+        <div class="col-lg-2 col-md-6 col-6">
           <h5>Produk</h5>
-          <ul class="list-unstyled mb-0">
+          <ul>
             <li><a href="produk/alat-tulis-kantor.html">Alat Tulis Kantor</a></li>
             <li><a href="produk/kursi-kantor.html">Kursi Kantor</a></li>
             <li><a href="produk/meja-kantor.html">Meja Kantor</a></li>
@@ -1227,10 +1582,10 @@
             <li><a href="produk/videotron.html">Videotron</a></li>
           </ul>
         </div>
-        <div class="col-lg-2 col-md-6">
+        <div class="col-lg-2 col-md-6 col-6">
           <h5>Network</h5>
-          <ul class="list-unstyled mb-0">
-            <li><a href="https://mitrapro.biz.id" target="_blank" rel="noopener">MitraPro</a></li>
+          <ul>
+            <li><a href="https://mitrapro.biz.id">MitraPro</a></li>
             <li><a href="https://tokoatk.web.id/toko-atk-surabaya">Toko ATK Surabaya</a></li>
             <li><a href="https://tokoatk.web.id/toko-atk-malang">Toko ATK Malang</a></li>
             <li><a href="https://tokoatk.web.id/toko-atk-jakarta">Toko ATK Jakarta</a></li>
@@ -1238,11 +1593,13 @@
             <li><a href="https://tokoatk.web.id/toko-atk-makassar">Toko ATK Makassar</a></li>
           </ul>
         </div>
-        <div class="col-lg-2 col-md-6">
+        <div class="col-lg-2 col-md-6 col-6">
           <h5>Kontak</h5>
-          <ul class="list-unstyled mb-0">
-            <li><a href="https://wa.me/6288989643555" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp me-2"></i>0889-8964-3555</a></li>
-            <li><a href="tel:+6288989643555"><i class="bi bi-telephone-fill me-2"></i>0889-8964-3555</a></li>
+          <ul>
+            <li><a href="https://wa.me/6288989643555"><i class="bi bi-whatsapp me-2"></i>0889-8964-3555</a>
+            </li>
+            <li><a href="tel:+6288989643555"><i class="bi bi-telephone-fill me-2"></i>0889-8964-3555</a>
+            </li>
           </ul>
           <p class="footer-city-strip mt-3 mb-0">Malang • Surabaya • Jakarta • Denpasar • Makassar</p>
         </div>
