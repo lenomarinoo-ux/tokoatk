@@ -2452,6 +2452,35 @@ img {
   margin-bottom: 0;
 }
 
+@media (max-width: 767.98px) {
+  .cta-band {
+    padding: clamp(1.75rem, 5vw, 2.25rem) clamp(1.25rem, 4vw, 1.75rem);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .cta-band {
+    padding: 1.5rem 1.15rem;
+    border-radius: var(--border-radius);
+  }
+
+  .cta-band h2 {
+    font-size: 1.35rem;
+  }
+
+  .cta-band p {
+    font-size: .92rem;
+  }
+
+  .cta-band .btn-wa {
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+}
+
 /* ==========================================================================
    FOOTER
    ========================================================================== */
