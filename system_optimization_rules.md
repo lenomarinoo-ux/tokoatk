@@ -1,33 +1,34 @@
-# Antigravity Performance Optimization Rules - tokoatk.web.id
+# Performance Optimization System Rules - tokoatk.web.id
 
-## 1. Tool Usage & File Inspection Rules (MANDATORY)
-- JANGAN GUNAKAN terminal shell (PowerShell, CMD, atau Bash) HANYA untuk melihat, mencari, atau membaca isi file.
-- SELALU gunakan native file reading tool (`read_file`, `view`, atau pembaca file bawaan agent) untuk menginspeksi file kode proyek.
-- Terminal shell HANYA boleh dipakai untuk build check atau git commands bila mutlak diperlukan.
+## 1. Tool Execution & File Inspection Rules
+- DILARANG menggunakan terminal shell (PowerShell, CMD, atau Bash) HANYA untuk melihat, mencari, atau membaca isi file.
+- SELALU gunakan native file reading tool (seperti `read_file`, `view`, atau pembaca file bawaan agent) untuk menginspeksi file kode proyek.
+- Terminal shell HANYA diizinkan untuk menjalankan perintah build atau git commit setelah ada konfirmasi.
 
-## 2. Integrity & Non-Destructive Guardrails
-- DILARANG merombak antarmuka (UI/UX), layout struktur visual, navigasi, daftar produk, keranjang, checkout, ataupun integrasi WhatsApp.
-- DILARANG menghapus elemen HTML fungsional atau memindahkan direktori aset tanpa path yang valid.
-- Seluruh perubahan harus bersifat *surgical* (hanya optimasi atribut tag HTML, CSS layout stability, defer/async script, serta resource hints).
+## 2. Strict Design & Architecture Constraints
+- DILARANG merombak tata letak visual (UI/UX), katalog produk, keranjang, struktur navigasi, maupun tombol WhatsApp. Tampilan harus 100% identik.
+- DILARANG mengganti framework/CMS atau menghapus elemen fungsional HTML.
+- Modifikasi dilakukan secara surgical: perbaikan atribut HTML (`width`, `height`, `aspect-ratio`, `loading`, `decoding`), optimasi resource hints (`preload`, `preconnect`), Critical CSS, dan defer script JS.
 
 ## 3. Core Web Vitals Targets & Implementation
 
-### A. Cumulative Layout Shift (CLS) — Prioritas Utama (Target < 0.1)
-- Setiap elemen `<img>` untuk aset lokal (WebP/PNG/JPG) WAJIB memiliki atribut eksplisit `width` dan `height` sesuai rasio asli gambar, atau dilengkapi CSS rule `aspect-ratio`.
-- Kontainer hero banner, slider carousel, dan widget dinamis wajib memiliki `min-height` atau skeleton placeholder statis agar konten di bawahnya tidak bergeser saat gambar selesai diunduh.
-- Pemuatan font kustom (@font-face / Google Fonts) wajib menyertakan `font-display: swap` untuk mencegah pergeseran teks (FOIT/FOUT).
+### A. Cumulative Layout Shift (CLS) — Prioritas Kritis (Target < 0.1)
+- Koreksi nilai CLS merah (skor saat ini ~0.764).
+- Setiap tag `<img>` yang memuat aset lokal (WebP/PNG/JPG) WAJIB memiliki atribut eksplisit `width` dan `height` yang proporsional atau inline CSS `aspect-ratio`.
+- Kontainer hero banner, slider carousel, dan kartu katalog produk wajib memiliki `min-height` tetap atau skeleton placeholder agar tidak menggeser layout saat aset selesai diunduh.
+- Semua custom font (@font-face / link Google Fonts) wajib menyertakan `font-display: swap` untuk mencegah layout shift akibat FOIT/FOUT.
 
 ### B. Largest Contentful Paint (LCP) — Target < 2.5s
-- Temukan elemen gambar hero/banner utama di atas fold (above-the-fold).
+- Identifikasi gambar hero/banner utama di atas fold (above-the-fold).
 - Sisipkan preloading pada tag `<head>`:
   `<link rel="preload" as="image" href="[path-gambar-hero]" fetchpriority="high">`
 - HAPUS atribut `loading="lazy"` pada gambar hero/above-the-fold.
-- Terapkan `loading="lazy"` dan `decoding="async"` HANYA pada gambar produk yang berada di bawah viewport (below-the-fold).
+- Atribut `loading="lazy"` dan `decoding="async"` HANYA boleh dipasang pada gambar di bawah fold (below-the-fold).
 
 ### C. First Contentful Paint (FCP) & Total Blocking Time (TBT)
-- Pasang atribut `defer` pada seluruh script JavaScript eksternal non-kritis.
-- Terapkan `preconnect` dan `dns-prefetch` pada koneksi ke third-party (seperti CDN font atau analitik).
-- Pastikan Critical CSS untuk bagian paling atas halaman dimuat lebih awal tanpa memblokir rendering utama.
+- Tambahkan atribut `defer` pada seluruh skrip JS eksternal non-kritis.
+- Terapkan `preconnect` dan `dns-prefetch` pada domain pihak ketiga (CDN font, analytics, dsb.).
+- Pastikan Critical CSS untuk viewport atas dimuat seawal mungkin dan hindari file stylesheet besar yang memblokir rendering pertama.
 
-## 4. Deliverable Format
-- Setiap modifikasi wajib disajikan dalam bentuk diff patch (Before vs After) yang jelas beserta nama file target.
+## 4. Output Protocol
+- Sajikan setiap perubahan kode dalam format diff patch (Before vs After) yang jelas dan sebutkan file target yang dimodifikasi.
