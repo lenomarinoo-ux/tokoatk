@@ -1035,6 +1035,8 @@ img {
 
   width: 100%;
   height: 190px;
+  aspect-ratio: 3 / 2;
+  min-height: 190px;
 
   overflow: hidden;
 
@@ -2733,6 +2735,7 @@ img {
   overflow: hidden;
   isolation: isolate;
   border-bottom: none;
+  min-height: 220px;
 }
 
 .page-header-bg {
@@ -3627,99 +3630,4 @@ img {
   .article-sidebar-sticky {
     position: static;
   }
-}
-
-sidebar-author-card h4 {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text-dark);
-  margin-bottom: .6rem;
-}
-
-.sidebar-social {
-  display: flex;
-  justify-content: center;
-  gap: .5rem;
-  margin-bottom: .9rem;
-}
-
-.sidebar-social a {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--primary-tint);
-  color: var(--primary);
-  transition: background .2s ease, color .2s ease;
-}
-
-.sidebar-social a:hover {
-  background: var(--primary);
-  color: var(--white);
-}
-
-.sidebar-author-card .desc {
-  font-size: .85rem;
-  color: var(--text-muted);
-  margin: 0;
-}
-
-.sidebar-related {
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: var(--border-radius-lg);
-  padding: 1.5rem;
-  box-shadow: var(--shadow-sm);
-}
-
-.sidebar-related h4 {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text-dark);
-  margin-bottom: 1rem;
-}
-
-.related-item {
-  display: flex;
-  gap: .75rem;
-  align-items: center;
-  text-decoration: none;
-  margin-bottom: 1rem;
-}
-
-.related-item:last-child {
-  margin-bottom: 0;
-}
-
-.related-item img {
-  width: 64px;
-  height: 64px;
-  border-radius: var(--border-radius-sm);
-  object-fit: cover;
-  flex-shrink: 0;
-}
-
-.related-item h5 {
-  font-size: .85rem;
-  font-weight: 600;
-  color: var(--text-dark);
-  line-height: 1.35;
-  margin-bottom: .2rem;
-}
-
-.related-item span {
-  font-size: .75rem;
-  color: var(--text-muted);
-}
-
-.related-item:hover h5 {
-  color: var(--primary);
-}
-
-@media (max-width: 991.98px) {
-  .article-sidebar-sticky {
-    position: static;
-  }
-}
+}

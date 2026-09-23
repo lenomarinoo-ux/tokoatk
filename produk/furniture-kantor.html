@@ -16,13 +16,33 @@
     <meta property="og:image" content="https://tokoatk.web.id/assets/img/hero/hero-kantor2.webp">
     <link rel="icon" type="image/webp" href="../assets/img/logo-ta.webp">
     <link rel="apple-touch-icon" href="../assets/img/logo-ta.webp">
+
+    <!-- Preload LCP Header Image -->
+    <link rel="preload" as="image" href="../assets/img/hero/hero-kantor1.webp" fetchpriority="high" type="image/webp">
+
+    <!-- Preconnect & DNS-Prefetch: CDN & Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+
+    <!-- Google Fonts: Poppins (Non-blocking with swap) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
+    </noscript>
+
+    <!-- Bootstrap 5 CSS (Non-blocking) -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"></noscript>
+
+    <!-- Custom Stylesheet (Non-blocking) -->
+    <link rel="preload" href="../assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="../assets/css/style.css"></noscript>
+
+    <!-- Bootstrap Icons (Non-blocking) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"></noscript>
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -111,9 +131,9 @@
 
     <div class="page-header page-header--photos">
         <div class="page-header-bg" aria-hidden="true">
-            <img src="../assets/img/hero/hero-kantor1.webp" alt="" class="page-header-bg__img" loading="eager">
-            <img src="../assets/img/hero/hero-kantor2.webp" alt="" class="page-header-bg__img" loading="lazy">
-            <img src="../assets/img/hero/hero-kantor3.webp" alt="" class="page-header-bg__img" loading="lazy">
+            <img src="../assets/img/hero/hero-kantor1.webp" alt="" class="page-header-bg__img" loading="eager" fetchpriority="high" decoding="async" width="1920" height="600">
+            <img src="../assets/img/hero/hero-kantor2.webp" alt="" class="page-header-bg__img" loading="lazy" decoding="async" width="1920" height="600">
+            <img src="../assets/img/hero/hero-kantor3.webp" alt="" class="page-header-bg__img" loading="lazy" decoding="async" width="1920" height="600">
             <span class="page-header-bg__overlay"></span>
         </div>
         <div class="container-xl">
@@ -133,7 +153,7 @@
                 <div class="col-lg-7">
                     <img src="../assets/img/hero/hero-kantor2.webp"
                         alt="Furniture kantor untuk kebutuhan instansi dan perusahaan" class="rounded-4 w-100 mb-4"
-                        loading="lazy">
+                        loading="lazy" decoding="async" width="800" height="620">
 
                     <span class="eyebrow"><i class="bi bi-info-circle-fill"></i>&nbsp;Tentang Kategori</span>
                     <h2 class="section-title" style="font-size:1.6rem;">Jenis Furniture Kantor yang Tersedia</h2>
@@ -288,8 +308,8 @@
         aria-label="Chat WhatsApp TokoATK"><i class="bi bi-whatsapp"></i><span class="wa-text">Konsultasi
             WhatsApp</span></a>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="../assets/js/main.js" defer></script>
     <script>document.getElementById('yearNow').textContent = new Date().getFullYear();</script>
 </body>
 

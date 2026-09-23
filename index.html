@@ -43,9 +43,10 @@
   <!-- Preload LCP Hero Image -->
   <link rel="preload" as="image" href="assets/img/hero/hero-kantor1.webp" fetchpriority="high" type="image/webp">
 
-  <!-- Preconnect: CDN & Fonts -->
+  <!-- Preconnect & DNS-Prefetch: CDN & Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
   <!-- Critical inline CSS (above-the-fold: navbar + hero + badges + base) -->
@@ -697,7 +698,7 @@
                 <div class="hero-img-wrap hero-slider" aria-label="Galeri foto TokoATK">
                   <img src="assets/img/hero/hero-kantor1.webp"
                     alt="Ruang kerja instansi tertata rapi dengan meja dan kursi kantor dari TokoATK"
-                    class="hero-slide is-active" loading="eager" fetchpriority="high" width="800" height="620">
+                    class="hero-slide is-active" loading="eager" fetchpriority="high" decoding="async" width="800" height="620">
                   <img src="assets/img/hero/hero-kantor2.webp"
                     alt="Peralatan dan perlengkapan kantor TokoATK untuk kebutuhan pengadaan" class="hero-slide"
                     loading="lazy" decoding="async" width="800" height="620">
