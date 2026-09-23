@@ -1,58 +1,38 @@
-# AGENT RULES & SYSTEM INSTRUCTIONS
+# Performance Optimization System Rules - Toko ATK (https://tokoatk.web.id/)
 
-## 1. Environment & Tool Execution Constraints (CRITICAL)
-- **DILARANG** menggunakan terminal (PowerShell, CMD, Bash, atau shell terminal lainnya) hanya untuk melihat, membaca, mencari, atau memeriksa isi file (misalnya: dilarang menjalankan `cat`, `type`, `Get-Content`, `dir`, `ls`, dsb.).
-- **SELALU PRIORITASKAN** native file reading tools (`read_file`, `view_file`, atau workspace file inspect tool) untuk memeriksa dan menganalisis kode sumber proyek.
-- Gunakan terminal/command runner HANYA jika diperlukan untuk proses build, instalasi dependensi, atau pengujian yang memang membutuhkan CLI execution.
+## 1. Tool Execution & Inspection Constraints
+- DILARANG menggunakan terminal shell (PowerShell, CMD, Bash) HANYA untuk melihat, mencari, atau membaca isi file proyek.
+- SELALU prioritaskan dan gunakan native file reading tool (`read_file`, `view`, atau `cat` bawaan environment editor/IDE) untuk memeriksa kode sumber.
+- Terminal shell HANYA diizinkan jika perlu menjalankan build script atau git commands setelah mendapat konfirmasi.
 
----
+## 2. Scope & Design Integrity (Non-Negotiable)
+- DILARANG merombak tata letak visual (UI/UX), navigasi, katalog produk, form checkout/inquiry, maupun tombol integrasi WhatsApp.
+- DILARANG mengganti arsitektur web atau framework yang sedang berjalan.
+- Seluruh intervensi harus berfokus pada:
+  1. Penambahan/perbaikan atribut tag HTML (misal: `width`, `height`, `loading`, `decoding`, `fetchpriority`).
+  2. Optimalisasi Resource Hints (`preload`, `preconnect`, `dns-prefetch`) pada tag `<head>`.
+  3. Manajemen CSS (Critical CSS, `aspect-ratio`, `font-display: swap`).
+  4. Penyesuaian pemuatan skrip JS (`defer`, `async`).
+  5. Konfigurasi caching dan kompresi server (`.htaccess` / `nginx.conf` / `vercel.json`).
 
-## 2. Role & Core Objective
-- **Role**: Senior Frontend Web Performance Engineer & Core Web Vitals Specialist.
-- **Target Project**: Repositori lokal website `tokoatk` (domain live: `https://tokoatk.web.id/`).
-- **Tujuan Utama**: Meningkatkan skor performa Google PageSpeed Insights (Mobile & Desktop) secara **surgical & lossless** tanpa merombak visual UI/UX, tata letak antarmuka, struktur branding, maupun alur fungsionalitas yang sudah ada.
+## 3. Core Web Vitals Targets & Standards
 
----
+### A. Cumulative Layout Shift (CLS) - Target: < 0.1 (Koreksi status MERAH 0.779)
+- Setiap tag `<img>` yang memuat aset lokal (WebP/PNG/JPG) WAJIB memiliki atribut `width` dan `height` eksplisit sesuai aspect ratio aslinya, atau diberikan inline CSS `aspect-ratio`.
+- Kontainer hero banner, slider/carousel, dan widget dinamis wajib memiliki `min-height` tetap atau placeholder skeleton agar tidak memicu layout shift saat aset selesai diunduh.
+- Pemuatan custom font via `@font-face` atau external link WAJIB menyertakan `font-display: swap` atau `optional`.
 
-## 3. Strict Project Constraints (Non-Negotiable)
-1. **Zero Layout Breakage**: Dilarang merombak antarmuka secara total, memindahkan posisi container, atau mengubah navigasi, katalog produk, artikel blog, dan integrasi tombol WhatsApp.
-2. **Asset Integrity**: Dilarang menghapus atau mengubah path aset gambar WebP lokal di dalam folder `assets/img/` tanpa menjaga konsistensi referensi link.
-3. **Surgical Code Modifications**: Seluruh perbaikan wajib difokuskan pada:
-   - File template HTML (`index.html`, `produk.html`, file di folder `produk/`, `blog.html`, dan artikel di folder `blog/`).
-   - File stylesheet (`assets/css/style.css`).
-   - File konfigurasi hosting (`vercel.json` atau server headers/cache).
+### B. Largest Contentful Paint (LCP) - Target: < 2.5s
+- Identifikasi aset gambar hero/banner yang berada di atas viewport (above-the-fold).
+- Sisipkan preload tag pada `<head>`:
+  `<link rel="preload" as="image" href="[path-gambar-hero]" fetchpriority="high">`
+- DILARANG menyematkan atribut `loading="lazy"` pada gambar hero/above-the-fold.
+- Atribut `loading="lazy"` dan `decoding="async"` HANYA boleh diterapkan pada gambar produk yang berada di bawah fold (below-the-fold).
 
----
+### C. First Contentful Paint (FCP) & Total Blocking Time (TBT)
+- Pasang atribut `defer` pada seluruh script JavaScript eksternal non-kritis.
+- Terapkan `preconnect` dan `dns-prefetch` pada domain pihak ketiga (CDN fonts, analitik, dsb.).
+- Pastikan stylesheet kritis di-inline atau dimuat tanpa memblokir rendering halaman utama.
 
-## 4. Technical Checklist for PageSpeed Insights Optimization
-
-### A. Eliminasi Cumulative Layout Shift (CLS)
-- Tambahkan atribut eksplisit `width="..."` dan `height="..."` atau CSS `aspect-ratio` pada setiap tag `<img>` di seluruh file HTML (terutama gambar hero, produk, dan thumbnail blog).
-- Tambahkan container wrapper dengan `min-height` atau skeleton dimension statis pada elemen banner hero above-the-fold dan slider agar layout tidak bergeser saat gambar selesai dimuat.
-- Gunakan `font-display: swap` pada setiap custom font atau font eksternal untuk menghindari layout shift saat font diunduh.
-
-### B. Optimalisasi Largest Contentful Paint (LCP)
-- Identifikasi elemen gambar LCP pada viewport teratas (misalnya gambar hero banner seperti `assets/img/hero/bg-hero-lp.webp` atau `assets/img/hero/hero-kantor1.webp`).
-- Pasang preload di tag `<head>` dokumen:
-  ```html
-  <link rel="preload" as="image" href="assets/img/hero/[nama-hero-banner].webp" fetchpriority="high">
-  ```
-- **DILARANG** menambahkan `loading="lazy"` pada gambar hero LCP di area above-the-fold.
-- Terapkan `loading="lazy"` dan `decoding="async"` HANYA pada gambar yang berada di bawah viewport (below-the-fold), seperti gambar katalog produk dan daftar thumbnail blog.
-
-### C. First Contentful Paint (FCP) & Render-Blocking Resources
-- Tunda eksekusi JavaScript yang tidak esensial menggunakan atribut `defer` pada file script `assets/js/main.js`.
-- Tambahkan atribut resource hints (`preconnect` dan `dns-prefetch`) pada domain pihak ketiga (seperti CDN font, icons, analytics) jika ada di tag `<head>`.
-- Pastikan stylesheet kritis untuk above-the-fold termuat cepat tanpa memblokir rendering halaman awal.
-
-### D. Caching & Compression (Vercel / Hosting)
-- Konfigurasi header cache pada `vercel.json` untuk aset statis (`assets/img/*`, `assets/css/*`, `assets/js/*`) dengan `Cache-Control: public, max-age=31536000, immutable`.
-
----
-
-## 5. Required Output Format
-
-Saat memberikan hasil perbaikan:
-1. **Summary of Audit**: Sebutkan file-file spesifik yang dianalisis beserta bottleneck yang ditemukan.
-2. **Code Implementation / Diff**: Berikan potongan kode *before* dan *after* secara presisi per file yang diedit.
-3. **Safety Verification**: Jelaskan mengapa perubahan tersebut tidak merusak tampilan visual (lossless) di layar mobile maupun desktop.
+## 4. Output Protocol
+- Setiap rekomendasi dan modifikasi kode wajib disajikan dalam bentuk diff patch (Before vs After) dengan path file yang jelas.
